@@ -38,4 +38,5 @@ matching.
         conda env update -f kbrgan_conda_env.yml
 
     
+* You will need to change values in `settings.ini`.
 
