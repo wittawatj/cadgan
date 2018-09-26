@@ -41,6 +41,15 @@ matching.
 * If you feel that your code is really a standalone script, you can also create
   put your code in `script/` at the root level, if you prefer that way.
 
+## Dependencies
+
+* Parts of this repository depend on code from
+  https://github.com/LMescheder/GAN_stability. To make it easier to manage dependencies, use the forked version here (by Wittawat): https://github.com/wittawatj/GAN_stability . To install,
+
+    1. Clone the repository
+    2. `cd` to the folder. Run `pip install -e .`. 
+    3. In a Python shell, you should be able to `import ganstab` without any error.
+
 ## Sharing resource files among collaborators
 
 Generally it is not a good idea to push large files (e.g., trained GAN models)
@@ -53,7 +62,9 @@ distribution, see [this
 page](https://github.com/odeke-em/drive/blob/master/platform_packages.md) for
 installation instructions.
 If you cannot use `drive` or prefer not to, you can use other clients that you
-like. You can also just go with manual downloading of all the shared files from
+like (for instance, [the official
+client](https://www.google.com/drive/download/)). You can also just go with
+manual downloading of all the shared files from
 the web, and saving them to your local directory. A drawback of this approach
 is that, when we update some files, you will need to manually update them. With
 the `drive` client, you simply run `drive pull` to get the latest update
