@@ -75,8 +75,10 @@ To have access to our shared Google Drive folder:
 1. Ask Wittawat to share with you the folder on Google Drive. You will need a
    Google account. Make sure you have a write access so you can push your
    files. Once shared, on [your Google Drive page](https://drive.google.com),
-   you should see a folder called `condgan_share`. This folder contains all the
-   resource files (not source code) related to this project.
+   you should see a folder called `condgan_share` on the "Shared with me" tab.
+   This folder contains all the resource files (not source code) related to
+   this project. Move it to your drive so that you can sync later by right
+   clicking, and selecting "Add to my drive".
 
 2. On your local machine, create a parent folder anywhere to contain all
    contents on your Google Drive (e.g., `~/Gdrive/`). We will refer to this
