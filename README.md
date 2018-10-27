@@ -44,7 +44,7 @@ matching.
 ## Dependencies
 
 * Parts of this repository depend on code from
-  https://github.com/LMescheder/GAN_stability. To make it easier to manage dependencies, use the forked version here (by Wittawat): https://github.com/wittawatj/GAN_stability . To install,
+  https://github.com/LMescheder/GAN_stability. To make it easier to manage dependencies, use the forked version here: https://github.com/wittawatj/GAN_stability . To install,
 
     1. Clone the repository
     2. `cd` to the folder. Run `pip install -e .`. 
