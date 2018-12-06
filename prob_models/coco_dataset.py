@@ -31,7 +31,7 @@ def _scale_and_crop(img, seg_mask, cropSize, is_train):
 
     img = imresize(img, scale, interp='bicubic')
     try:
-        seg = imresize(seg_mask, scale, interp='bilinear')
+        seg = imresize(seg_mask, scale, interp='nearest')
     except:
         seg = np.full((h,w), 182) #An issue with one image, thus returning dummy mask.
     h_s, w_s = img.shape[0], img.shape[1]
