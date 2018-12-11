@@ -30,7 +30,7 @@ parser.add_argument('--feat_size', type=int, default=64, help="number of feature
 parser.add_argument('--cropsize', type=int, default=256, help="image cropsize. Default=128")
 parser.add_argument('--batch_size', type=int, default= 32, help='training batch size. Default=16')
 parser.add_argument('--epochs', type=int, default=150, help='number of epochs to train for. Default=100')
-parser.add_argument('--lr', type=float, default=0.0003, help='Learning Rate. Default=0.001')
+parser.add_argument('--lr', type=float, default=0.001, help='Learning Rate. Default=0.001')
 parser.add_argument('--segmented_input', type=int, default=1, help='segment input images with pretrained semantic segmentation model before feeding into G. Default=0')
 parser.add_argument('--loss_mse', type=float, default=1, help='weight of MSE loss. Default=1')
 parser.add_argument('--cuda', type=int, default=1, help='Try to use cuda? Default=1')
@@ -87,7 +87,7 @@ print('===> Building optimizer')
 optimizer = optim.Adam(G.parameters(), lr=opt.lr)
 #optimizer = optim.Adam(filter(lambda p: p.requires_grad, G.parameters()), lr=opt.lr)
 
-experiment = 'multilabel'
+experiment = 'multilabelBCE'
 saves_path = './Extractors/'+experiment+'/saves'
 
 if not os.path.exists(saves_path):
@@ -96,26 +96,37 @@ if not os.path.exists(saves_path):
 l1_loss = nn.L1Loss().cuda()
 l2_loss = nn.MSELoss().cuda()
 
-#crit = nn.NLLLoss(ignore_index=-1)
-crit = nn.BCEWithLogitsLoss() # sigmoid included
 
+#crit = nn.BCEWithLogitsLoss() # sigmoid included
+crit = nn.MultiLabelSoftMarginLoss()
+
+steps = 0
 print('===> Initializing training')
 def train(epoch):
-    steps = 0
-
+    eps = 1e-4
+    global steps
     for iteration, batch in enumerate(training_data_loader, 1):
         data = to_variable(batch[0])
         label = to_variable(batch[1])#.long()
         pred = G(data)
+        pred.data[pred.data < eps] = eps
+        pred.data[pred.data > 1 - eps] = 1 -eps
         loss = crit(pred, label)
+        predict = torch.clamp(torch.round(pred), 0, 1)
+        #predict = torch.sigmoid(pred) > 0.5
+        #total = len(label[1])
+        r = (predict == label)#.byte())
+        acc = r.float().sum().item()
+        acc = float(acc) / 183 # total
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        writer.add_scalar('loss', loss.item(), steps)
+        writer.add_scalar('Loss: ', loss.item(), steps)
+        writer.add_scalar('Accuracy: ', acc, steps)
         steps +=1
         if iteration%50 == 0:
-            print('Epoch [%d], Step[%d/%d], overall_loss: %.8f'
-              %(epoch, iteration, len(training_data_loader), loss.data[0]))
+            print('Epoch [%d], Step[%d/%d], overall_loss: %.8f, Acc: %.4f'
+              %(epoch, iteration, len(training_data_loader), loss.item(), acc))
 
 
 def save_checkpoint(epoch):
@@ -134,4 +145,3 @@ for epoch in range(1, opt.epochs + 1):
     if (epoch+1)==80 or (epoch+1)==110:
         for g in optimizer.param_groups:
             g['lr'] = g['lr'] * 0.1
-            writer.add_scalar('learning_rate', g['lr'], steps)
