@@ -9,7 +9,7 @@ import torch
 import torch.optim as optim
 from torch.autograd import Variable
 from torch.utils.data import DataLoader
-from extractors import ResNet18_365
+from kbrgan.net.extractor import ResNet18_365Layer
 import torchvision
 from coco_dataset import Dataset_CocoSegmented
 import torch.nn as nn
@@ -71,7 +71,7 @@ if opt.resume:
     G = torch.load(resume)
     G.train()
 else:
-    G = ResNet18_365(num_classes = 183)
+    G = ResNet18_365Layer(num_classes = 183)
     if cuda:
         G = G.cuda()
 
@@ -121,8 +121,8 @@ def train(epoch):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        writer.add_scalar('Loss: ', loss.item(), steps)
-        writer.add_scalar('Accuracy: ', acc, steps)
+        writer.add_scalar('Loss ', loss.item(), steps)
+        writer.add_scalar('Acc ', acc, steps)
         steps +=1
         if iteration%50 == 0:
             print('Epoch [%d], Step[%d/%d], overall_loss: %.8f, Acc: %.4f'
