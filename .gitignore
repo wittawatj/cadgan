@@ -1,7 +1,6 @@
 settings.ini
 .idea/
 *.swp
-*.png
 data/
 .DS_Store
 prob_model/
