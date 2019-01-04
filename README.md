@@ -1,7 +1,8 @@
 # kbrgan
 
-Conditional image generation with kernel Bayes' rule, and kernel moment
-matching.
+Conditional image generation with kernel moment matching. 
+
+* [Link to Overleaf](https://www.overleaf.com/project/5c2d971d1cf80f23a8a26dcb) for ICML 2019: 
 
 * `kbrgan` is intended to be a Python module i.e., it can be imported in
   Python code. Reusable code should be put in this folder. Make subfolders
