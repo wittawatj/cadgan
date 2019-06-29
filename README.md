@@ -32,7 +32,7 @@ Conditional image generation with kernel moment matching.
         pip install -e /path/to/the/folder/of/this/repo/
 
   to install as a Python package. In Python, we can then do `import cadgan as
-  kbg`, and all the code in `cadgan` folder is accessible through `kbg`.
+  cdg`, and all the code in `cadgan` folder is accessible through `cdg`.
 
 * `ipynb` folder is for Jupyter notebook files. Easiest to create
   `ipynb/wittawat/`, `ipynb/waleed/`, `ipynb/amit`, and `ipynb/patsorn/`. Or you can also
