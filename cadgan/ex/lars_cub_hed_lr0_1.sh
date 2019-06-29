@@ -1,0 +1,10 @@
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_1/" "a1b11565f81b.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_1/" "9eafa750d81b.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_1/" "ef01410ba18a.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_1/" "0cb6d11e34fc.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_1/" "162d1b95b265.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_1/" "fa1b7285fd70.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_1/" "a454d2fa75e8.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_1/" "bfda4fe09b28.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_1/" "f5c5aafbd086.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_1/" "24d9c2ff0636.sh"& 

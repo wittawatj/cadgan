@@ -1,0 +1,10 @@
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_005/" "ea68ec1c520a.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_005/" "609ea297a6b5.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_005/" "0dac2d4286fd.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_005/" "9c0d9f48a5ee.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_005/" "23edcaff0709.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_005/" "62a0c42fe3fe.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_005/" "533eb7b44f07.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_005/" "a9011e4342cb.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_005/" "060a44005b71.sh"& 
+srun -p short --gres=gpu:1 --exclude bender,jarvis bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/lars_cub_hed_lr0_005/" "09a867fbf96d.sh"& 

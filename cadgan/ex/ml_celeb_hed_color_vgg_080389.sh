@@ -1,0 +1,12 @@
+srun -p short --gres=gpu:1 --exclude bender bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/ml_celeb_hed_color_vgg_080389/" "aabde16dfc70.sh"& 
+srun -p short --gres=gpu:1 --exclude bender bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/ml_celeb_hed_color_vgg_080389/" "9eb0a3dad07b.sh"& 
+srun -p short --gres=gpu:1 --exclude bender bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/ml_celeb_hed_color_vgg_080389/" "3a94c50ba17d.sh"& 
+srun -p short --gres=gpu:1 --exclude bender bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/ml_celeb_hed_color_vgg_080389/" "eb72561c75fd.sh"& 
+srun -p short --gres=gpu:1 --exclude bender bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/ml_celeb_hed_color_vgg_080389/" "4e1e2525171e.sh"& 
+srun -p short --gres=gpu:1 --exclude bender bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/ml_celeb_hed_color_vgg_080389/" "8519ea9d26dc.sh"& 
+srun -p short --gres=gpu:1 --exclude bender bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/ml_celeb_hed_color_vgg_080389/" "7b604833fb0b.sh"& 
+srun -p short --gres=gpu:1 --exclude bender bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/ml_celeb_hed_color_vgg_080389/" "5af5856c1cbd.sh"& 
+srun -p short --gres=gpu:1 --exclude bender bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/ml_celeb_hed_color_vgg_080389/" "f334526f94d8.sh"& 
+srun -p short --gres=gpu:1 --exclude bender bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/ml_celeb_hed_color_vgg_080389/" "11b42df1de4b.sh"& 
+srun -p short --gres=gpu:1 --exclude bender bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/ml_celeb_hed_color_vgg_080389/" "345951b85d6d.sh"& 
+srun -p short --gres=gpu:1 --exclude bender bash /nethome/psangkloy3/dockerfile/run_docker_kbrgan_script.sh "/notebooks/psangkloy3/kbrgan_temp/kbrgan/ex/ml_celeb_hed_color_vgg_080389/" "0422a2799973.sh"& 

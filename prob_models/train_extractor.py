@@ -11,8 +11,8 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torchvision
+from cadgan.net.extractor import ResNet18_365Layer
 from coco_dataset import Dataset_CocoSegmented
-from kbrgan.net.extractor import ResNet18_365Layer
 from tensorboardX import SummaryWriter
 from torch.autograd import Variable
 from torch.utils.data import DataLoader

@@ -1,26 +1,26 @@
-# kbrgan
+# cadgan
 
 Conditional image generation with kernel moment matching. 
 
 * [Link to Overleaf](https://www.overleaf.com/project/5c2d971d1cf80f23a8a26dcb) for ICML 2019: 
 
-* `kbrgan` is intended to be a Python module i.e., it can be imported in
+* `cadgan` is intended to be a Python module i.e., it can be imported in
   Python code. Reusable code should be put in this folder. Make subfolders
   (packages) as appropriate.
 
 * Using Anaconda is the probably the easiest way to setup a Python environment.
-  The file `kbrgan_conda_env.yml` is a file exported from Anaconda. It can be
+  The file `cadgan_conda_env.yml` is a file exported from Anaconda. It can be
   used to create (or update) a new environment for this project. We all will
   have the same running software. Use the following commands:
 
         // create a new environment called randgan
-        conda create --name kbrgan
+        conda create --name cadgan
 
         // activate the environment
-        conda activate kbrgan 
+        conda activate cadgan 
 
         // update it with the file
-        conda env update -f kbrgan_conda_env.yml
+        conda env update -f cadgan_conda_env.yml
 
     
 
@@ -29,8 +29,8 @@ Conditional image generation with kernel moment matching.
 
         pip install -e /path/to/the/folder/of/this/repo/
 
-  to install as a Python package. In Python, we can then do `import kbrgan as
-  kbg`, and all the code in `kbrgan` folder is accessible through `kbg`.
+  to install as a Python package. In Python, we can then do `import cadgan as
+  kbg`, and all the code in `cadgan` folder is accessible through `kbg`.
 
 * `ipynb` folder is for Jupyter notebook files. Easiest to create
   `ipynb/wittawat/`, `ipynb/waleed/`, `ipynb/amit`, and `ipynb/patsorn/`. Or you can also
@@ -43,5 +43,5 @@ Conditional image generation with kernel moment matching.
 ## Dependency, code structure, sharing resource files
 
 You will need to change values in `settings.ini`.  See
-https://github.com/wittawatj/kbrgan/wiki . We currently share large files
+https://github.com/wittawatj/cadgan/wiki . We currently share large files
 (e.g., model files) via Google Drive. 
