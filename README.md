@@ -1,8 +1,10 @@
 # cadgan
 
-Conditional image generation with kernel moment matching. 
+Conditional image generation with kernel moment matching.
 
-* [Link to Overleaf](https://www.overleaf.com/project/5c2d971d1cf80f23a8a26dcb) for ICML 2019: 
+* [Link to Overleaf](https://www.overleaf.com/project/5c2d971d1cf80f23a8a26dcb) for ICML 2019:
+
+* Support python 3.6+
 
 * `cadgan` is intended to be a Python module i.e., it can be imported in
   Python code. Reusable code should be put in this folder. Make subfolders
@@ -14,18 +16,18 @@ Conditional image generation with kernel moment matching.
   have the same running software. Use the following commands:
 
         // create a new environment called randgan
-        conda create --name cadgan
+        conda create --name cadgan python=3.7
 
         // activate the environment
-        conda activate cadgan 
+        conda activate cadgan
 
         // update it with the file
         conda env update -f cadgan_conda_env.yml
 
-    
+
 
 * After activating an appropriate anaconda environment, this repo is set up so
-  that once you clone, you can do 
+  that once you clone, you can do
 
         pip install -e /path/to/the/folder/of/this/repo/
 
@@ -44,4 +46,4 @@ Conditional image generation with kernel moment matching.
 
 You will need to change values in `settings.ini`.  See
 https://github.com/wittawatj/cadgan/wiki . We currently share large files
-(e.g., model files) via Google Drive. 
+(e.g., model files) via Google Drive.
