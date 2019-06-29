@@ -27,7 +27,7 @@ setup(
     description="Conditional image generation with kernel Bayes' rule",
     long_description=long_description,
     # The project's main homepage.
-    url="https://github.com/wittawatj/cadgan",
+    url="https://github.com/wittawatj/kbrgan",
     # Author details
     author="Wittawat Jitkrittum",
     author_email="wittawatj@gmail.com",
@@ -62,11 +62,5 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=[
-        "numpy",
-        "autograd",
-        "scipy",
-        "matplotlib",
-        "ganstab @ git+https://github.com/wittawatj/GAN_stability.git#egg=ganstab-0.1.0",
-    ],
+    install_requires=["numpy", "autograd", "scipy", "matplotlib","ganstab @ git+https://github.com/wittawatj/GAN_stability.git#egg=ganstab-0.1.0","torch==0.4.1","dill>=0.2.8.2","pandas>=0.23.2","PerceptualSimilarity @ git+https://github.com/janesjanes/PerceptualSimilarity.git#egg=PerceptualSimilarity-0.0.1"],
 )
