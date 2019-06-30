@@ -51,14 +51,16 @@ class Generator(nn.Module):
         """
         Save the state of this model to a file f.
         """
-        torch.save(self, f)
+        torch.save(self.state_dict(), f)
 
-    @staticmethod
-    def load(f, **opt):
+    def load(self, f, **opt):
         """
         Load a Generator from a file. To be used with save().
         """
-        return torch.load(f, **opt)
+        import collections
+        if type(torch.load(f, **opt)) == collections.OrderedDict:
+            return self.load_state_dict(torch.load(f, **opt),strict=False)
+        return self.load_state_dict(torch.load(f, **opt).state_dict(),strict=False)
 
 
 # ---------
