@@ -18,7 +18,7 @@ from torchvision.utils import save_image
 
 
 class Generator(nn.Module):
-    def __init__(self, latent_dim=100):
+    def __init__(self, latent_dim=100, load=False):
         super(Generator, self).__init__()
 
         img_size = 28
@@ -40,6 +40,19 @@ class Generator(nn.Module):
             nn.Conv2d(64, channels, 3, stride=1, padding=1),
             nn.Tanh(),
         )
+        
+        if load:
+            
+            gan_fpath = glo.prob_model_folder('mnist_dcgan/mnist_dcgan_ep{}_bs{}.pt'.format(40, 64))
+            if not os.path.exists(gan_fpath):
+                from google_drive_downloader import GoogleDriveDownloader as gdd
+                gdd.download_file_from_google_drive(file_id='1M0OeHShjpWyf99zmHHVVdBEA7u9GAFZ1',
+                                                   dest_path=gan_fpath)
+            use_cuda = torch.cuda.is_available()
+            load_options = {} if use_cuda else {'map_location': lambda storage, loc: storage} 
+            
+            self.load(gan_fpath,**load_options)
+
 
     def forward(self, z):
         out = self.l1(z)

@@ -18,13 +18,25 @@ from torchvision import datasets, transforms
 
 
 class MnistClassifier(nn.Module):
-    def __init__(self):
+    def __init__(self,load=False):
         super(MnistClassifier, self).__init__()
         self.conv1 = nn.Conv2d(1, 10, kernel_size=5)
         self.conv2 = nn.Conv2d(10, 20, kernel_size=5)
         self.conv2_drop = nn.Dropout2d()
         self.fc1 = nn.Linear(320, 50)
         self.fc2 = nn.Linear(50, 10)
+        
+        if load:
+            model_path = glo.prob_model_folder('mnist_cnn/mnist_cnn_ep40_s1.pt')
+            if not os.path.exists(model_path):
+                from google_drive_downloader import GoogleDriveDownloader as gdd
+                gdd.download_file_from_google_drive(file_id='1wYJX_w3J5Fzxc5E4DCMPunWRKikLvk5F',
+                                                    dest_path=model_path)
+            use_cuda = True and torch.cuda.is_available()
+            load_options = {} if use_cuda else {'map_location': lambda storage, loc: storage} 
+            
+            self.load(model_path, **load_options)
+            
 
     def forward(self, x):
         x = self.features(x)
@@ -43,14 +55,16 @@ class MnistClassifier(nn.Module):
         """
         Save the state of this model to a file.
         """
-        torch.save(self, f)
+        torch.save(self.state_dict(), f)
 
-    @staticmethod
-    def load(f, **opt):
+    def load(self, f, **opt):
         """
         Load a Generator from a file. To be used with save().
         """
-        return torch.load(f, **opt)
+        import collections
+        if type(torch.load(f, **opt)) == collections.OrderedDict:
+            return self.load_state_dict(torch.load(f, **opt),strict=False)
+        return self.load_state_dict(torch.load(f, **opt).state_dict(),strict=False)
 
 
 # --------------
