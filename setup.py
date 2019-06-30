@@ -14,9 +14,46 @@ from setuptools import find_packages, setup
 
 here = path.abspath(path.dirname(__file__))
 
+config_content = f"""#--------------------------------
+# configurations for experiments. End users of this package should not need to
+# change these.
+[experiment]
+
+# Full path to the directory to store temporary files when running experiments.
+scratch_path = /tmp/
+
+# Full path to the directory to store experimental results.
+expr_results_path = {here}/results/cadgan
+
+# Full path to the directory to store files related to a model for a particular problem.
+# Inside this folder are subfolders, each having name [problem]_[model] e.g.,
+# mnist_dcgan. These folders may contain, for instance, generated images, model
+# files.
+problem_model_path = {here}/prob_models/
+
+#--------------------------------
+# Configurations related to datasets.
+[data]
+
+# Full path to the data directory. Expected to have one subfolder for each
+# problem e.g., cifar10, celeba.
+data_path = {here}/data
+
+[share]
+
+# Full path to the root directory of the shared folder. This folder contains
+# all resource files (e.g., data, trained models) that are released by the
+# authors.
+share_path = {here}/condgan_share/"""
+
+with open(path.join(here, "settings.ini"),'w+') as f:
+    f.write(config_content)
+
 # Get the long description from the README file
 with open(path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
+
+
 
 setup(
     name="cadgan",
@@ -62,5 +99,5 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=["numpy", "autograd", "scipy", "matplotlib","ganstab @ git+https://github.com/wittawatj/GAN_stability.git#egg=ganstab-0.1.0","torch==0.4.1","dill>=0.2.8.2","pandas>=0.23.2","PerceptualSimilarity @ git+https://github.com/janesjanes/PerceptualSimilarity.git#egg=PerceptualSimilarity-0.0.1"],
+    install_requires=["numpy", "autograd", "scipy", "matplotlib","ganstab @ git+https://github.com/wittawatj/GAN_stability.git#egg=ganstab-0.1.0","torch==0.4.1","dill>=0.2.8.2","pandas>=0.23.2","PerceptualSimilarity @ git+https://github.com/janesjanes/PerceptualSimilarity.git#egg=PerceptualSimilarity-0.0.1","tqdm==4.23.4"],
 )
