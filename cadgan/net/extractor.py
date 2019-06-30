@@ -129,7 +129,7 @@ class SoftCountPixels(nn.Module):
     Soft count is done with an exponentiated p-norm kernel
     """
 
-    def __init__(self, prototypes, gwidth2=0.3, pnorm=2, device="cpu", tensor_type=torch.cuda.FloatTensor):
+    def __init__(self, prototypes, gwidth2=0.3, pnorm=2, device="cpu", tensor_type=torch.FloatTensor):
         """
         prototypes: a p x c stack of p prototype pixels of c channels.
         gwidth2: Gaussian bandwidth squared. Should be small for the count to
