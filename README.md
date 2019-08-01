@@ -47,3 +47,6 @@ Conditional image generation with kernel moment matching.
 You will need to change values in `settings.ini`.  See
 https://github.com/wittawatj/cadgan/wiki . We currently share large files
 (e.g., model files) via Google Drive.
+
+
+* Need `cmdprod` package to reproduct the experimental results.

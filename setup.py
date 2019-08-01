@@ -64,7 +64,7 @@ setup(
     description="Conditional image generation with kernel Bayes' rule",
     long_description=long_description,
     # The project's main homepage.
-    url="https://github.com/wittawatj/kbrgan",
+    url="https://github.com/wittawatj/cadgan",
     # Author details
     author="Wittawat Jitkrittum",
     author_email="wittawatj@gmail.com",
