@@ -23,7 +23,7 @@ config_content = f"""#--------------------------------
 scratch_path = /tmp/
 
 # Full path to the directory to store experimental results.
-expr_results_path = {here}/results/cadgan
+expr_results_path = {here}/results/
 
 # Full path to the directory to store files related to a model for a particular problem.
 # Inside this folder are subfolders, each having name [problem]_[model] e.g.,
