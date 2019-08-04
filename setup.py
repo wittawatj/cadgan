@@ -66,7 +66,7 @@ setup(
     # The project's main homepage.
     url="https://github.com/wittawatj/cadgan",
     # Author details
-    author="Wittawat Jitkrittum",
+    author="Wittawat Jitkrittum, Patsorn Sangkloy, Waleed Gondal, Amit Raj",
     author_email="wittawatj@gmail.com",
     # Choose your license
     license="MIT",
