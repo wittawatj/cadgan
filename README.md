@@ -49,4 +49,7 @@ https://github.com/wittawatj/cadgan/wiki . We currently share large files
 (e.g., model files) via Google Drive.
 
 
-* Need `cmdprod` package to reproduct the experimental results.
+* Need `cmdprod` package to reproduce the experimental results.
+
+* Automatic dependency resolution only works with a new version of pip.
+    First upgrade you pip with `pip install --upgrade pip`.

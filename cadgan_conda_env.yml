@@ -1,4 +1,4 @@
-name: kbrgan
+name: cadgan
 channels:
   - pytorch
   - conda-forge
@@ -164,4 +164,3 @@ dependencies:
     - tqdm==4.23.4
     - urllib3==1.23
     - wrapt==1.10.11
-prefix: /is/ei/wittawat/anaconda3/envs/kbrgan
