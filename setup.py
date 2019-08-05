@@ -44,7 +44,7 @@ data_path = {here}/data
 # Full path to the root directory of the shared folder. This folder contains
 # all resource files (e.g., data, trained models) that are released by the
 # authors.
-share_path = {here}/condgan_share/"""
+share_path = {here}/cadgan_share/"""
 
 with open(path.join(here, "settings.ini"),'w+') as f:
     f.write(config_content)
