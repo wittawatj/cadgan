@@ -10,13 +10,9 @@ from builtins import int, object, range, zip
 import dill
 import numpy as np
 import pandas as pd
-import PerceptualSimilarity as ps
-import PerceptualSimilarity.models.dist_model as dm
-import PerceptualSimilarity.util.util as psutil
-import torch
+# import torch
 from future import standard_library
 from past.utils import old_div
-from tqdm import tqdm
 
 standard_library.install_aliases()
 __author__ = "wittawat"
@@ -532,6 +528,8 @@ def get_df_from_log(log_path, lpips_compute=False, model=None):
 
 def get_df_from_logs(log_dir, lpips_compute=False, ignore_error=True, use_gpu=True):
     # lpips_compute can take a very longggg time, only set to true if you really want it~
+    from tqdm import tqdm
+    import PerceptualSimilarity.models.dist_model as dm
     df_list = []
     if lpips_compute:
         model = dm.DistModel()
@@ -560,6 +558,8 @@ def get_df_from_logs(log_dir, lpips_compute=False, ignore_error=True, use_gpu=Tr
 
 
 def get_perceptual_distance(input_image_list, output_image_list, model_path=None, model=None, use_gpu=True):
+    import PerceptualSimilarity.models.dist_model as dm
+    import PerceptualSimilarity.util.util as psutil
 
     if model is None:
         model = dm.DistModel()

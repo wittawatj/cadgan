@@ -26,7 +26,7 @@ Conditional image generation with kernel moment matching.
 
 
 
-* After activating an appropriate anaconda environment, this repo is set up so
+* After activating an appropriate Anaconda environment, this repo is set up so
   that once you clone, you can do
 
         pip install -e /path/to/the/folder/of/this/repo/

@@ -108,7 +108,7 @@ setup(
         "dill>=0.2.8.2",
         "pandas>=0.23.2",
         "PerceptualSimilarity @ git+https://github.com/janesjanes/PerceptualSimilarity.git#egg=PerceptualSimilarity-0.0.1",
-        "tqdm==4.23.4","googledrivedownloader",
+        # "tqdm==4.23.4","googledrivedownloader",
         "requests",
         "hed @ git+https://github.com/janesjanes/hed.git#egg=hed-0.1.0"
         ],

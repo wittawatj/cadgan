@@ -71,9 +71,10 @@ class Generator(nn.Module):
         Load a Generator from a file. To be used with save().
         """
         import collections
-        if type(torch.load(f, **opt)) == collections.OrderedDict:
-            return self.load_state_dict(torch.load(f, **opt),strict=False)
-        return self.load_state_dict(torch.load(f, **opt).state_dict(),strict=False)
+        loaded = torch.load(f, **opt)
+        if type(loaded) == collections.OrderedDict:
+            return self.load_state_dict(loaded, strict=False)
+        return self.load_state_dict(loaded.state_dict(), strict=False)
 
 
 # ---------
