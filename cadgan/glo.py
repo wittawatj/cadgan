@@ -15,9 +15,10 @@ def get_config_path():
     """
     Return the full path to the config file.
     """
-    # first priority: config file at ~/.cadgan_settings.ini
+    # first priority: config file at ~/cadgan_resources/settings.ini
     home_dir = os.path.expanduser("~")
-    at_home_config = os.path.join(home_dir, ".cadgan_settings.ini")
+    config_dir = os.path.join(home_dir, 'cadgan_resources')
+    at_home_config = os.path.join(config_dir, "settings.ini")
     if os.path.exists(at_home_config):
         return at_home_config
     # If the config file in the home dir does not exist,

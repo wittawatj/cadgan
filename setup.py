@@ -7,12 +7,16 @@ https://github.com/pypa/sampleproject
 
 # To use a consistent encoding
 from codecs import open
+import os
 from os import path
 
 # Always prefer setuptools over distutils
 from setuptools import find_packages, setup
 
-here = path.abspath(path.dirname(__file__))
+# Write the default config file in the user's home directory.
+# This should be consistent with glo.py.
+home_dir = os.path.expanduser("~")
+config_dir = os.path.join(home_dir, 'cadgan_resources')
 
 config_content = f"""#--------------------------------
 # configurations for experiments. End users of this package should not need to
@@ -23,13 +27,13 @@ config_content = f"""#--------------------------------
 scratch_path = /tmp/
 
 # Full path to the directory to store experimental results.
-expr_results_path = {here}/results/
+expr_results_path = {config_dir}/results/
 
 # Full path to the directory to store files related to a model for a particular problem.
 # Inside this folder are subfolders, each having name [problem]_[model] e.g.,
 # mnist_dcgan. These folders may contain, for instance, generated images, model
 # files.
-problem_model_path = {here}/prob_models/
+problem_model_path = {config_dir}/prob_models/
 
 #--------------------------------
 # Configurations related to datasets.
@@ -37,20 +41,24 @@ problem_model_path = {here}/prob_models/
 
 # Full path to the data directory. Expected to have one subfolder for each
 # problem e.g., cifar10, celeba.
-data_path = {here}/data
+data_path = {config_dir}/data
 
 [share]
 
 # Full path to the root directory of the shared folder. This folder contains
 # all resource files (e.g., data, trained models) that are released by the
 # authors.
-share_path = {here}/cadgan_share/"""
+share_path = {config_dir}/cadgan_share/
+"""
 
-with open(path.join(here, "settings.ini"),'w+') as f:
+# with open(path.join(config_dir, "settings.ini"),'w+') as f:
+#     f.write(config_content)
+config_path = os.path.join(config_dir, 'settings.ini')
+with open(config_path, 'w+') as f:
     f.write(config_content)
 
 # Get the long description from the README file
-with open(path.join(here, "README.md"), encoding="utf-8") as f:
+with open(path.join(config_dir, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 
