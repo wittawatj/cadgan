@@ -17,7 +17,7 @@ from setuptools import find_packages, setup
 # This should be consistent with glo.py.
 home_dir = os.path.expanduser("~")
 config_dir = os.path.join(home_dir, 'cadgan_resources')
-os.path.makedirs(config_dir, exist_ok=True)
+os.makedirs(config_dir, exist_ok=True)
 
 config_content = f"""#--------------------------------
 # configurations for experiments. End users of this package should not need to
@@ -58,8 +58,9 @@ config_path = os.path.join(config_dir, 'settings.ini')
 with open(config_path, 'w+') as f:
     f.write(config_content)
 
+here = path.abspath(path.dirname(__file__))
 # Get the long description from the README file
-with open(path.join(config_dir, "README.md"), encoding="utf-8") as f:
+with open(path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 
