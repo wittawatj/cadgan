@@ -17,6 +17,7 @@ from setuptools import find_packages, setup
 # This should be consistent with glo.py.
 home_dir = os.path.expanduser("~")
 config_dir = os.path.join(home_dir, 'cadgan_resources')
+os.path.makedirs(config_dir, exist_ok=True)
 
 config_content = f"""#--------------------------------
 # configurations for experiments. End users of this package should not need to
