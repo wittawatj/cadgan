@@ -12,9 +12,19 @@ Repository containing resources from our paper:
 * Main text only [here](http://wittawat.com/assets/papers/cadgan_icml2019_main.pdf) (file size: 7.3MB)
 * Supplementary file only [here](http://wittawat.com/assets/papers/cadgan_icml2019_supp.pdf) (file size: 32MB)
 
-We propose a novel procedure which adds *content-addressability* to any given unconditional implicit model e.g., a generative adversarial network (GAN). The procedure allows users to control the generative process by specifying a set (arbitrary size) of desired examples based on which similar samples are generated from the model. The proposed approach, based on kernel mean matching, is applicable to any generative models which transform latent vectors to samples, and does not require retraining of the model. Experiments on various high-dimensional image generation problems (CelebA-HQ, LSUN bedroom, bridge, tower) show that our approach is able to generate images which are consistent with the input set, while retaining the image quality of the original model. To our knowledge, this is the first work that attempts to construct, *at test time*, a content-addressable generative model from a trained marginal model.
+We propose a novel procedure which adds *content-addressability* to any given
+unconditional implicit model e.g., a generative adversarial network (GAN). The
+procedure allows users to control the generative process by specifying a set
+(arbitrary size) of desired examples based on which similar samples are
+generated from the model. The proposed approach, based on kernel mean matching,
+is applicable to any generative models which transform latent vectors to
+samples, and does not require retraining of the model. Experiments on various
+high-dimensional image generation problems (CelebA-HQ, LSUN bedroom, bridge,
+tower) show that our approach is able to generate images which are consistent
+with the input set, while retaining the image quality of the original model. To
+our knowledge, this is the first work that attempts to construct, *at test
+time*, a content-addressable generative model from a trained marginal model.
 
-Code coming soon!
 
 ## Examples
 
@@ -22,4 +32,11 @@ We consider a GAN model from [Mescheder et al., 2018](https://arxiv.org/abs/1801
 
 <img src="https://github.com/wittawatj/cadgan/blob/master/illus/m3_triangle_interpolation_v2.png" width="70%">
 
-<img src="https://github.com/wittawatj/cadgan/blob/master/illus/m3_triangle_interpolation_v5.png" width="70%">
+<!--<img src="https://github.com/wittawatj/cadgan/blob/master/illus/m3_triangle_interpolation_v5.png" width="70%">-->
+
+## Code 
+
+Full code in Python (with Pytorch) is coming soon! For now, please check this
+[Colab
+notebook](https://colab.research.google.com/drive/1gH2naGOwxYNz6OGDydc9SPz7AHJlc5u7)
+for a simple example on MNIST. No local installation is required.
