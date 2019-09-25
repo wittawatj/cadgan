@@ -40,3 +40,7 @@ Full code in Python (with Pytorch) is coming soon! For now, please check this
 [Colab
 notebook](https://colab.research.google.com/drive/1gH2naGOwxYNz6OGDydc9SPz7AHJlc5u7)
 for a simple example on MNIST. No local installation is required.
+
+
+## Contact
+If you have questions or comments, please contact [Wittawat](http://wittawat.com/) and [Patsorn](https://www.cc.gatech.edu/~psangklo/)
