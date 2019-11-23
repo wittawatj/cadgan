@@ -34,7 +34,7 @@ We consider a GAN model from [Mescheder et al., 2018](https://arxiv.org/abs/1801
 
 <!--<img src="https://github.com/wittawatj/cadgan/blob/master/illus/m3_triangle_interpolation_v5.png" width="70%">-->
 
-## Demo 
+## Demo
 
 For a simple demo example on MNIST, check out this [Colab
 notebook](https://colab.research.google.com/drive/1gH2naGOwxYNz6OGDydc9SPz7AHJlc5u7). No local installation is required.
@@ -54,7 +54,7 @@ notebook](https://colab.research.google.com/drive/1gH2naGOwxYNz6OGDydc9SPz7AHJlc
   to install as a Python package. In Python, we can then do `import cadgan as
   cdg`, and all the code in `cadgan` folder is accessible through `cdg`.
 
-* `ipynb` folder is for Jupyter notebook files. 
+* `ipynb` folder is for Jupyter notebook files.
 
 ## Dependency, code structure, sharing resource files
 
@@ -67,7 +67,7 @@ https://github.com/wittawatj/cadgan/wiki . We currently share large files
 
 * Automatic dependency resolution only works with a new version of pip.
     First upgrade you pip with `pip install --upgrade pip`.
-    
+
 ## Contact
 If you have questions or comments, please contact [Wittawat](http://wittawat.com/) and [Patsorn](https://www.cc.gatech.edu/~psangklo/)
 
