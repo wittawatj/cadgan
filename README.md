@@ -47,24 +47,7 @@ notebook](https://colab.research.google.com/drive/1gH2naGOwxYNz6OGDydc9SPz7AHJlc
   Python code. Reusable code should be put in this folder. Make subfolders
   (packages) as appropriate.
 
-* Using Anaconda is the probably the easiest way to setup a Python environment.
-  The file `cadgan_conda_env.yml` is a file exported from Anaconda. It can be
-  used to create (or update) a new environment for this project. We all will
-  have the same running software. Use the following commands:
-
-        // create a new environment called randgan
-        conda create --name cadgan python=3.7
-
-        // activate the environment
-        conda activate cadgan
-
-        // update it with the file
-        conda env update -f cadgan_conda_env.yml
-
-
-
-* After activating an appropriate Anaconda environment, this repo is set up so
-  that once you clone, you can do
+* This repo is set up so that once you clone, you can do
 
         pip install -e /path/to/the/folder/of/this/repo/
 
@@ -72,8 +55,6 @@ notebook](https://colab.research.google.com/drive/1gH2naGOwxYNz6OGDydc9SPz7AHJlc
   cdg`, and all the code in `cadgan` folder is accessible through `cdg`.
 
 * `ipynb` folder is for Jupyter notebook files. 
-- [ ] to update notebook details
-
 
 ## Dependency, code structure, sharing resource files
 
@@ -89,3 +70,8 @@ https://github.com/wittawatj/cadgan/wiki . We currently share large files
     
 ## Contact
 If you have questions or comments, please contact [Wittawat](http://wittawat.com/) and [Patsorn](https://www.cc.gatech.edu/~psangklo/)
+
+## TODO list
+- [ ] support running cadgan on celebaHQ
+- [ ] support running cadgan on LSUN
+- [ ] clean up code & readme
