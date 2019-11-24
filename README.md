@@ -69,7 +69,7 @@ We provide an example script to run CADGAN in `ex/run_gkmm.py`
 
 To run CADGAN for celebAHQ dataset on lars pre-trained model:
 
-    python3 run_lars_gkmm_interpolation.py \
+    python3 run_gkmm.py \
         --extractor_type vgg_face \
         --extractor_layers 8 17 26 35 \
         --texture 0\
