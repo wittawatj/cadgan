@@ -4,19 +4,17 @@ computing cluster.
 """
 import cmdprod as cp
 
-# import numpy as np
-
 
 def args_spec(
     g_path, g_type, logdir, list_cond_path, list_extractor_type=["vgg_face"], list_extractor_layers=["8 17 26 35"]
 ):
     """
-    Return a specification arguments (including candidate values) for 
-    an experiment with Lars's models.
-    
+    Return a specification arguments (including candidate values) for
+    an experiment with cadgan.
+
     #!/bin/bash
 
-    python3 run_lars_gkmm.py \
+    python3 run_gkmm.py \
         --extractor_type vgg_face \
         --extractor_layers 8 17 26 35 \
         --texture 1\
@@ -25,7 +23,7 @@ def args_spec(
         --g_type celebAHQ.yaml \
         --g_min -1.0 \
         --g_max 1.0 \
-        --logdir log_lars_celeba_vggface/ \
+        --logdir log_celeba_vggface/ \
         --device gpu \
         --n_sample 1 \
         --n_opt_iter 3000 \
@@ -94,14 +92,14 @@ def main():
     bundle1 = dict(
         g_path="gan_data/celebAHQ_00/chkpts/model.pt",
         g_type="celebAHQ.yaml",
-        logdir="log_lars_celeba_batch/",
+        logdir="log_celeba_batch/",
         list_cond_path=["c.txt"],
         list_extractor_type=["vgg_face"],
         list_extractor_layers=["17", "8 17 26 35"],
     )
     args = args_spec(**bundle1)
 
-    line_begin = "python3 ../run_lars_gkmm.py "
+    line_begin = "python3 ../run_gkmm.py "
     # potentially the destination script folder name should depend on the type
     # of bundle
     dest_path = "cmd_celeba1"

@@ -1,23 +1,21 @@
 """
 Runnable script to experiment with the kernel moment matching with a
 generator (conditional image generation with kernel moment matching). Pytorch
-version. Data = Mnist.
+version.
 """
 
-__author__ = "wittawat"
+__author__ = "wittawat, patsorn"
 
 import argparse
 import copy
 import datetime
 import glob
-# import matplotlib
-# import matplotlib.pyplot as plt
 import os
 import pprint
 
 # Just don't use imageio. Use skimage.
 # import imageio
-# KBRGAN
+
 import cadgan
 import cadgan.colormnist.dcgan as cmnist_dcgan
 import cadgan.gen as gen
@@ -25,9 +23,6 @@ import cadgan.glo as glo
 import cadgan.imutil as imutil
 import cadgan.kernel as kernel
 import cadgan.log as log
-# import cadgan.plot as plot
-# import cadgan.embed as embed
-# import cadgan.util as util
 import cadgan.main as kmain
 import cadgan.mnist.dcgan as mnist_dcgan
 import cadgan.mnist.util as mnist_util
@@ -35,6 +30,7 @@ import cadgan.net.extractor as ext
 import cadgan.net.net as net
 import cadgan.util as util
 import dill
+
 # LarsGAN
 # GAN
 import ganstab.configs
@@ -58,7 +54,6 @@ from ganstab.gan_training.distributions import get_ydist, get_zdist
 from ganstab.gan_training.eval import Evaluator
 from tensorboardX import SummaryWriter
 from torch import nn
-
 
 def target_transform():
     return transforms.Compose([transforms.ToTensor()])
@@ -100,15 +95,15 @@ class GramMatrix(nn.Module):
 def main():
     # Training settings
     parser = argparse.ArgumentParser(
-        description='PyTorch GKMM on MNIST. Some paths are relative to the "(share_path)/prob_models/". See settings.ini for (share_path).'
+        description='PyTorch GKMM. Some paths are relative to the "(share_path)/prob_models/". See settings.ini for (share_path).'
     )
 
     parser.add_argument(
         "--extractor_type",
         type=str,
         default="vgg",
-        help="The feature extractor, currently VGG is supported only. The saved object should be a torch.nn.Module representing a \
-        feature extractor. ",
+        help="The feature extractor. The saved object should be a torch.nn.Module representing a \
+        feature extractor. Currently support [vgg | vgg_face | alexnet_365 | resnet18_365 | resnet50_365 | hed | mnist_cnn | pixel]",
         required=True,
     )
     parser.add_argument(
@@ -117,7 +112,7 @@ def main():
         default=["4", "9", "18", "27"],
         help="Number of layers to include. Only for VGG feature extractor. Default:[]",
     )
-    parser.add_argument("--texture", type=float, default=0, help="Use texture of extracted features. Default=0")
+    parser.add_argument("--texture", type=float, default=0, help="Use texture (grammatrix) of extracted features. Default=0")
     parser.add_argument(
         "--depth_process",
         nargs="?",
