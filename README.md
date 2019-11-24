@@ -54,6 +54,9 @@ notebook](https://colab.research.google.com/drive/1gH2naGOwxYNz6OGDydc9SPz7AHJlc
   to install as a Python package. In Python, we can then do `import cadgan as
   cdg`, and all the code in `cadgan` folder is accessible through `cdg`.
 
+  * Automatic dependency resolution only works with a new version of pip.
+      First upgrade you pip with `pip install --upgrade pip`.
+
 * `ipynb` folder is for Jupyter notebook files.
 
 ## Dependency, code structure, sharing resource files
@@ -62,11 +65,9 @@ You will need to change values in `settings.ini`.  See
 https://github.com/wittawatj/cadgan/wiki . We currently share large files
 (e.g., model files) via Google Drive.
 
+We provide an example script to run CADGAN in `ex/run_gkmm.py`
 
-* Need `cmdprod` package to reproduce the experimental results.
-
-* Automatic dependency resolution only works with a new version of pip.
-    First upgrade you pip with `pip install --upgrade pip`.
+* In case you want to experiment with the parameters, we use `ex/cmd_gkmm.py` to generate commands for multiple combinations of parameters. This requires `cmdprod` package available here: https://github.com/wittawatj/cmdprod
 
 ## Contact
 If you have questions or comments, please contact [Wittawat](http://wittawat.com/) and [Patsorn](https://www.cc.gatech.edu/~psangklo/)
