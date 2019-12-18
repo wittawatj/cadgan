@@ -67,7 +67,7 @@ https://github.com/wittawatj/cadgan/wiki . We currently share large files
 
 We provide an example script to run CADGAN in `ex/run_gkmm.py`
 
-To run CADGAN for celebAHQ dataset on lars pre-trained model:
+For example, here is the command to run CADGAN for celebAHQ dataset on lars pre-trained model:
 
     python3 run_gkmm.py \
         --extractor_type vgg_face \
@@ -88,7 +88,9 @@ To run CADGAN for celebAHQ dataset on lars pre-trained model:
         --cond_path  input.txt\
         --kernel imq \
         --kparams -0.5 1e+2 \
-        --w_intp 0 
+        --w_intp 0
+
+See run_lars_bedroom.sh, run_lars_bridge.sh, run_mnist.sh, run_CUB.sh for other model options.
 
 * In case you want to experiment with the parameters, we use `ex/cmd_gkmm.py` to generate commands for multiple combinations of parameters. This requires `cmdprod` package available here: https://github.com/wittawatj/cmdprod
 
@@ -96,6 +98,7 @@ To run CADGAN for celebAHQ dataset on lars pre-trained model:
 If you have questions or comments, please contact [Wittawat](http://wittawat.com/) and [Patsorn](https://www.cc.gatech.edu/~psangklo/)
 
 ## TODO list
-- [ ] support running cadgan on celebaHQ
-- [ ] support running cadgan on LSUN
-- [ ] clean up code & readme
+- [x] support running cadgan on celebaHQ
+- [x] support running cadgan on LSUN
+- [x] clean up code & readme
+- [ ] upload and share data/model files
