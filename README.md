@@ -101,4 +101,6 @@ If you have questions or comments, please contact [Wittawat](http://wittawat.com
 - [x] support running cadgan on celebaHQ
 - [x] support running cadgan on LSUN
 - [x] clean up code & readme
+- [ ] test that all script can successfully run
 - [ ] upload and share data/model files
+  - [ ] script to download and extract all lars models
