@@ -7,14 +7,13 @@ import os
 import cadgan
 import cadgan.glo as glo
 import cadgan.main as kmain
-import cadgan.mnist.classify as mnist_classify
+import cadgan.gan.mnist.classify as mnist_classify
 import hed.networks
 import torch
 import torch.nn.functional as F
 import torchvision
 import torchvision.models as models
 import torchvision.transforms as transforms
-from cadgan.mnist.classify import MnistClassifier
 from torch import nn
 from torch.autograd import Variable
 from torch.nn import functional as F
@@ -74,7 +73,7 @@ class HED(nn.Module):
     def __init__(self, device="cpu", resize=64):
         """
         wrapper class for HED network (see https://github.com/xwjabc/hed)
-        
+
         """
 
         super(HED, self).__init__()
@@ -124,7 +123,7 @@ class SoftCountPixels(nn.Module):
     """
     For each image in the batch, construct a soft-count for each pixel protype
     in the list of p pixel prototypes. So if the batch size is b, then return a
-    bxp matrix A where A[i,j] is in [0,1] specifying (roughly) the score 
+    bxp matrix A where A[i,j] is in [0,1] specifying (roughly) the score
     that prototype j occurs in image i.
     Soft count is done with an exponentiated p-norm kernel
     """

@@ -17,15 +17,15 @@ import pprint
 # import imageio
 
 import cadgan
-import cadgan.colormnist.dcgan as cmnist_dcgan
+import cadgan.gan.colormnist.dcgan as cmnist_dcgan
 import cadgan.gen as gen
 import cadgan.glo as glo
 import cadgan.imutil as imutil
 import cadgan.kernel as kernel
 import cadgan.log as log
 import cadgan.main as kmain
-import cadgan.mnist.dcgan as mnist_dcgan
-import cadgan.mnist.util as mnist_util
+import cadgan.gan.mnist.dcgan as mnist_dcgan
+import cadgan.gan.mnist.util as mnist_util
 import cadgan.net.extractor as ext
 import cadgan.net.net as net
 import cadgan.util as util
@@ -41,7 +41,6 @@ import torch
 import torchsummary
 import torchvision
 import torchvision.transforms as transforms
-from cadgan.mnist.classify import MnistClassifier
 from ganstab.gan_training import utils
 # gan_training package is originally from https://github.com/LMescheder/GAN_stability
 # Install it via https://github.com/wittawatj/GAN_stability
