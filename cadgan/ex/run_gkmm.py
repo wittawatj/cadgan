@@ -334,6 +334,7 @@ def main():
     )
     depth_process_map = {"no": ext.Identity(), "avg": ext.GlobalAvgPool()}
     feature_size = 128
+
     if args.texture == 1:
         post_process = nn.Sequential(depth_process_map[args.depth_process], GramMatrix())
     else:
@@ -356,47 +357,33 @@ def main():
         # extractor_in_size = 256
         extractor = ext.HED(device=device, resize=feature_size)
     elif args.extractor_type == "hed_color":
-
+        #stacking feature from HED and tiny image to get both edge and color information
         hed = ext.HED(device=device, resize=feature_size)
-
         tiny = ext.TinyImage(device=device, grid_size=(10, 10))
-
         extractor = ext.StackModule(device=device, module_list=[hed, tiny], weights=[0.01, 0.99])
     elif args.extractor_type == "hed_vgg":
+        #stacking feature from HED and vgg feature to get both edge and high level vgg information
         feature_size = 128
         hed = ext.HED(device=device, resize=feature_size)
         extractor_layers = [int(i) for i in args.extractor_layers]
         vgg = ext.VGG19(layers=extractor_layers, layer_postprocess=post_process)
-
         extractor = ext.StackModule(device=device, module_list=[hed, vgg], weights=[0.99, 0.01])
     elif args.extractor_type == "hed_color_vgg":
+        #stacking feature from HED, tiny image, and vgg feature to get edge, color, and high level vgg information
         feature_size = 128
         hed = ext.HED(device=device, resize=feature_size)
         extractor_layers = [int(i) for i in args.extractor_layers]
         vgg = ext.VGG19(layers=extractor_layers, layer_postprocess=post_process)
         tiny = ext.TinyImage(device=device, grid_size=(10, 10))
         extractor = ext.StackModule(device=device, module_list=[hed, vgg, tiny], weights=[0.005, 0.005, 0.99])
-
     elif args.extractor_type == "color":
-
-        # extractor = ext.HED_Tiny("cuda" if use_cuda else "cpu",resize=32,grid_size=(5,5))
-
         extractor = ext.TinyImage(device=device, grid_size=(128, 128))
-
-    elif args.extractor_type == "maxcolor":
-
-        # extractor = ext.HED_Tiny("cuda" if use_cuda else "cpu",resize=32,grid_size=(5,5))
-
-        extractor = ext.MaxColor(device=device)
-
     elif args.extractor_type == "color_count":
         # to use with Waleed color mnist only:
+        # the purpose is to count color based on the template, currently not working as expected.
         prototypes = torch.tensor([[1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 1, 0], [1, 0, 1], [0.4, 0.2, 0]])
         extractor = ext.SoftCountPixels(prototypes=prototypes, gwidth2=0.3, device=device, tensor_type=tensor_type)
-
-        # extractor = ext.StackModule(device=device,module_list=[hed,tiny])
     elif args.extractor_type == "mnist_cnn":
-        # extractor_in_size = 256
         depth_process_map = {"no": ext.Identity(), "avg": ext.GlobalAvgPool()}
         if args.texture == 1:
             post_process = nn.Sequential(depth_process_map[args.depth_process], GramMatrix())
@@ -405,9 +392,8 @@ def main():
         extractor = ext.MnistCNN(
             device="cuda" if use_cuda else "cpu", layer_postprocess=post_process, layer=int(args.extractor_layers[0])
         )
-
     elif args.extractor_type == "mnist_cnn_digit_layer":
-        # extractor_in_size = 256
+        #using the last layer of MNIST CNN (digit classification)
         depth_process_map = {"no": ext.Identity(), "avg": ext.GlobalAvgPool()}
         if args.texture == 1:
             post_process = nn.Sequential(depth_process_map[args.depth_process], GramMatrix())
@@ -415,7 +401,7 @@ def main():
             post_process = nn.Sequential(depth_process_map[args.depth_process])
         extractor = ext.MnistCNN(device="cuda" if use_cuda else "cpu", layer_postprocess=post_process, layer=3)
     elif args.extractor_type == "mnist_cnn_digit_layer_color":
-        # extractor_in_size = 256
+        # using the last layer of MNIST CNN (digit classification) stacking with color information from tiny image
         depth_process_map = {"no": ext.Identity(), "avg": ext.GlobalAvgPool()}
         if args.texture == 1:
             post_process = nn.Sequential(depth_process_map[args.depth_process], GramMatrix())
@@ -423,10 +409,9 @@ def main():
             post_process = nn.Sequential(depth_process_map[args.depth_process])
         mnistcnn = ext.MnistCNN(device="cuda" if use_cuda else "cpu", layer_postprocess=post_process, layer=3)
         color = ext.MaxColor(device=device)
-
         extractor = ext.StackModule(device=device, module_list=[mnistcnn, color], weights=[1, 99])
     elif args.extractor_type == "pixel":
-        # extractor_in_size = 256
+        #raw pixel as feature
         extractor = ext.Identity(flatten=True, slice_dim=0 if args.g_type == "mnist_dcgan" else None)
     else:
         raise ValueError("Unknown extractor type. Check --extractor_type")
@@ -447,8 +432,6 @@ def main():
     print("Number of extracted features = {}".format(n_features))
     del tmp_extracted
 
-    # print(glo.share_path(args.cond_path))
-    # import pdb; pdb.set_trace()
     def load_multiple_images(list_imgs):
         for path_img in list_imgs:
             loaded = imutil.load_resize_image(path_img, extractor_in_size).copy()
@@ -472,13 +455,11 @@ def main():
 
             cond_imgs = load_multiple_images(list_imgs)
         else:
-            # TODO: check that this is image file
             path_img = glo.share_path(args.cond_path)
             loaded = imutil.load_resize_image(path_img, extractor_in_size).copy()
             cond_imgs = img_transform(loaded).unsqueeze(0).type(tensor_type)  # .to(device)
     else:
         # using all images in the folder
-
         list_imgs = glob.glob(glo.share_path(args.cond_path) + "*")
         cond_imgs = load_multiple_images(list_imgs)
 

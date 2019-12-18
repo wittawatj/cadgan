@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python3 run_lars_gkmm.py \
+python3 run_gkmm.py \
     --extractor_type resnet50_365 \
     --extractor_layers 4 \
     --texture 0\
@@ -16,6 +16,6 @@ python3 run_lars_gkmm.py \
     --lr 1e-1 \
     --seed 9 \
     --img_log_steps 10 \
-    --cond_path  lsun_imgs/lsun_bridge/a.jpg\
+    --cond_path  list_of_input_image_path.txt\
     --kernel imq \
     --kparams -0.5 1e+2 \
