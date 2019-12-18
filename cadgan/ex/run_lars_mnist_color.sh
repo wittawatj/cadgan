@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python3 run_lars_gkmm.py \
+python3 ru_gkmm.py \
     --extractor_type mnist_cnn_digit_layer_color \
     --extractor_layers 3 \
     --texture 0\
@@ -20,4 +20,3 @@ python3 run_lars_gkmm.py \
     --kernel imq \
     --kparams -0.5 1e+1 \
     --img_size 28
-    

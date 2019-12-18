@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python3 run_lars_gkmm.py \
+python3 run_gkmm.py \
     --extractor_type mnist_cnn_digit_layer \
     --extractor_layers 2 \
     --texture 0\

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python3 run_lars_gkmm.py \
+python3 run_gkmm.py \
     --extractor_type pixel \
     --extractor_layers 17 \
     --texture 0\
