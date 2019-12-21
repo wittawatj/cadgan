@@ -17,7 +17,7 @@ import torchvision.transforms as transforms
 from torch import nn
 from torch.autograd import Variable
 from torch.nn import functional as F
-
+from cadgan.gan.mnist.classify import MnistClassifier
 
 class MnistCNN(nn.Module):
     def __init__(self, device="cpu", layer_postprocess=None, layer=1):
@@ -26,7 +26,8 @@ class MnistCNN(nn.Module):
         # load up model
         model_path = glo.share_path("prob_models/mnist_cnn/mnist_cnn_ep40_s1.pt")
         if os.path.exists(model_path):
-            self.classifier = mnist_classify.MnistClassifier.load(model_path)
+            self.classifier = mnist_classify.MnistClassifier()
+            self.classifier.load(model_path)
         else:
             self.classifier = mnist_classify.MnistClassifier(load=True)
         self.classifier = self.classifier.eval()
