@@ -102,5 +102,11 @@ If you have questions or comments, please contact [Wittawat](http://wittawat.com
 - [x] support running cadgan on LSUN
 - [x] clean up code & readme
 - [ ] test that all script can successfully run
+    - [x] run_mnist.sh
+    - [ ] run_lars_bridge.sh
+    - [ ] run_lars_bedroom.sh
+    - [ ] run_CUB.sh
+    - [ ] run_lars_celeba.sh
+    - [ ] run_mnist_color.sh
 - [ ] upload and share data/model files
   - [ ] script to download and extract all lars models
