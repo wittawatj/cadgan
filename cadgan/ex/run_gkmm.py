@@ -42,6 +42,7 @@ import torchsummary
 import torchvision
 import torchvision.transforms as transforms
 from ganstab.gan_training import utils
+from cadgan.gan.mnist.classify import MnistClassifier
 # gan_training package is originally from https://github.com/LMescheder/GAN_stability
 # Install it via https://github.com/wittawatj/GAN_stability
 # - clone the repository
@@ -239,7 +240,7 @@ def main():
         nlabels = config["data"]["nlabels"]
         out_dir = config["training"]["out_dir"]
         checkpoint_dir = os.path.join(out_dir, "chkpts")
-
+        
         generator = build_generator(config)
 
         # Put models on gpu if needed
@@ -269,6 +270,8 @@ def main():
 
         full_g_path = glo.share_path(args.g_path)
         if not os.path.exists(full_g_path):
+            #download lars pre-trained model file if not existed
+            
             raise ValueError("Generator file does not exist: {}".format(full_g_path))
         it = checkpoint_io.load(full_g_path)
 
@@ -279,13 +282,16 @@ def main():
         Z0 = f_noise(n_sample)
 
         full_g_path = glo.share_path(args.g_path)
-        if not os.path.exists(full_g_path):
-            raise ValueError("Generator file does not exist: {}".format(full_g_path))
         # load option depends on whether GPU is used
         load_options = {} if use_cuda else {"map_location": lambda storage, loc: storage}
 
-        generator = mnist_dcgan.Generator()  # .load(full_g_path, **load_options)
-        generator.load_state_dict(torch.load(full_g_path, **load_options).state_dict(), strict=False)
+        generator = mnist_dcgan.Generator() 
+        if os.path.exists(full_g_path):
+            generator.load_state_dict(torch.load(full_g_path, **load_options).state_dict(), strict=False)
+        else:
+            print("Generator file does not exist: {}\nLoading pretrain model...".format(full_g_path))
+            generator.download_pretrain()  # .load(full_g_path, **load_options)
+            
         generator = generator.to(device)
 
         generator_test = generator
@@ -619,7 +625,4 @@ def main():
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except Exception as e:
-        print(e)
+    main()

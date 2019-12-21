@@ -12,6 +12,7 @@ from torch.autograd import Variable
 from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision.utils import save_image
+from google_drive_downloader import GoogleDriveDownloader as gdd
 
 # DCGAN code heavily based on
 # https://github.com/eriklindernoren/PyTorch-GAN/blob/master/implementations/dcgan/dcgan.py
@@ -42,17 +43,7 @@ class Generator(nn.Module):
         )
         
         if load:
-            
-            gan_fpath = glo.prob_model_folder('mnist_dcgan/mnist_dcgan_ep{}_bs{}.pt'.format(40, 64))
-            if not os.path.exists(gan_fpath):
-                from google_drive_downloader import GoogleDriveDownloader as gdd
-                gdd.download_file_from_google_drive(file_id='1M0OeHShjpWyf99zmHHVVdBEA7u9GAFZ1',
-                                                   dest_path=gan_fpath)
-            use_cuda = torch.cuda.is_available()
-            load_options = {} if use_cuda else {'map_location': lambda storage, loc: storage} 
-            
-            self.load(gan_fpath,**load_options)
-
+            self.download_pretrain()
 
     def forward(self, z):
         out = self.l1(z)
@@ -76,7 +67,15 @@ class Generator(nn.Module):
             return self.load_state_dict(loaded, strict=False)
         return self.load_state_dict(loaded.state_dict(), strict=False)
 
-
+    def download_pretrain(self, output_path='',**opt):
+        if output_path == '':
+            output_path = glo.prob_model_folder('mnist_dcgan/mnist_dcgan_ep{}_bs{}.pt'.format(40,64))
+        if not os.path.exists(output_path):
+            gdd.download_file_from_google_drive(file_id='1M0OeHShjpWyf99zmHHVVdBEA7u9GAFZ1',dest_path=output_path)
+            
+        use_cuda = torch.cuda.is_available()
+        load_options = {} if use_cuda else {'map_location': lambda storage, loc: storage} 
+        self.load(output_path,**load_options)
 # ---------
 
 

@@ -25,8 +25,10 @@ class MnistCNN(nn.Module):
         super(MnistCNN, self).__init__()
         # load up model
         model_path = glo.share_path("prob_models/mnist_cnn/mnist_cnn_ep40_s1.pt")
-
-        self.classifier = mnist_classify.MnistClassifier.load(model_path)
+        if os.path.exists(model_path):
+            self.classifier = mnist_classify.MnistClassifier.load(model_path)
+        else:
+            self.classifier = mnist_classify.MnistClassifier(load=True)
         self.classifier = self.classifier.eval()
         self.classifier = self.classifier.to(device)
 
@@ -73,7 +75,7 @@ class HED(nn.Module):
     def __init__(self, device="cpu", resize=64):
         """
         wrapper class for HED network (see https://github.com/xwjabc/hed)
-
+        
         """
 
         super(HED, self).__init__()
@@ -123,7 +125,7 @@ class SoftCountPixels(nn.Module):
     """
     For each image in the batch, construct a soft-count for each pixel protype
     in the list of p pixel prototypes. So if the batch size is b, then return a
-    bxp matrix A where A[i,j] is in [0,1] specifying (roughly) the score
+    bxp matrix A where A[i,j] is in [0,1] specifying (roughly) the score 
     that prototype j occurs in image i.
     Soft count is done with an exponentiated p-norm kernel
     """

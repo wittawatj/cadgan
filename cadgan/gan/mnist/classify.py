@@ -15,6 +15,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
+from google_drive_downloader import GoogleDriveDownloader as gdd
 
 
 class MnistClassifier(nn.Module):
@@ -27,15 +28,7 @@ class MnistClassifier(nn.Module):
         self.fc2 = nn.Linear(50, 10)
         
         if load:
-            model_path = glo.prob_model_folder('mnist_cnn/mnist_cnn_ep40_s1.pt')
-            if not os.path.exists(model_path):
-                from google_drive_downloader import GoogleDriveDownloader as gdd
-                gdd.download_file_from_google_drive(file_id='1wYJX_w3J5Fzxc5E4DCMPunWRKikLvk5F',
-                                                    dest_path=model_path)
-            use_cuda = True and torch.cuda.is_available()
-            load_options = {} if use_cuda else {'map_location': lambda storage, loc: storage} 
-            
-            self.load(model_path, **load_options)
+            self.download_pretrain()
             
 
     def forward(self, x):
@@ -62,10 +55,21 @@ class MnistClassifier(nn.Module):
         Load a Generator from a file. To be used with save().
         """
         import collections
-        if type(torch.load(f, **opt)) == collections.OrderedDict:
-            return self.load_state_dict(torch.load(f, **opt),strict=False)
-        return self.load_state_dict(torch.load(f, **opt).state_dict(),strict=False)
+        loaded = torch.load(f, **opt)
+        if type(loaded) == collections.OrderedDict:
+            return self.load_state_dict(loaded, strict=False)
+        return self.load_state_dict(loaded.state_dict(), strict=False)
 
+    def download_pretrain(self,output='',**opt):
+        if output=='':
+            output=glo.prob_model_folder('mnist_cnn/mnist_cnn_ep40_s1.pt')
+            
+        if not os.path.exists(output):
+            gdd.download_file_from_google_drive(file_id='1wYJX_w3J5Fzxc5E4DCMPunWRKikLvk5F',dest_path=output)
+        use_cuda = True and torch.cuda.is_available()
+        load_options = {} if use_cuda else {'map_location': lambda storage, loc: storage} 
+            
+        self.load(output, **load_options)
 
 # --------------
 
