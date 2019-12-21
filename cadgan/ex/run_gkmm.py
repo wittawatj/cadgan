@@ -287,10 +287,10 @@ def main():
 
         generator = mnist_dcgan.Generator() 
         if os.path.exists(full_g_path):
-            generator.load_state_dict(torch.load(full_g_path, **load_options).state_dict(), strict=False)
+            generator.load(full_g_path)
         else:
             print("Generator file does not exist: {}\nLoading pretrain model...".format(full_g_path))
-            generator.download_pretrain()  # .load(full_g_path, **load_options)
+            generator.download_pretrain(output=full_g_path)  # .load(full_g_path, **load_options)
             
         generator = generator.to(device)
 
