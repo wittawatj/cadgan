@@ -8,6 +8,7 @@ import numpy as np
 import scipy.misc
 import skimage
 import skimage.util
+import imageio
 
 
 def numpy_image_to_float(img, out_range=(0, 1)):
@@ -88,4 +89,4 @@ def save_images(images, location=""):
             img = np.stack((img[:, :, 0],) * 3, axis=-1)
         fn = "%03d" % (i,)
 
-        scipy.misc.imsave(os.path.join(location, fn + ".jpg"), img)
+        imageio.imwrite(os.path.join(location, fn + ".jpg"), img)
