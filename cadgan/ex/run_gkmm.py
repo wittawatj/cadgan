@@ -523,7 +523,7 @@ def main():
     )
     img_log_steps = args.img_log_steps
     logdir_fname = util.clean_filename(parameters_str, replace="/\\[]")
-    log_dir_path = os.path.join(logdir, logdir_fname)
+    log_dir_path = glo.result_folder(os.path.join(logdir, logdir_fname))
 
     # multiple restarts to refine the drawn Z. This is just a heuristic
     # so we start (hopefully) from a good initial point.
@@ -622,6 +622,7 @@ def main():
         img_log_steps=img_log_steps,
         log_img_dir=log_dir_path,
     )
+    print('Finished, results location : {}'.format(log_dir_path))
 
 
 if __name__ == "__main__":
