@@ -123,6 +123,7 @@ setup(
         "torchsummary",
         "pyyaml",
         "tensorboardX",
+        "googledrivedownloader",
         "hed @ git+https://github.com/janesjanes/hed.git#egg=hed-0.1.0"
         ],
 )
