@@ -9,7 +9,7 @@ python3 run_gkmm.py \
     --g_type mnist_dcgan \
     --g_min -1.0 \
     --g_max 1.0 \
-    --logdir log_rebuttal_mnist/ \
+    --logdir log_mnist/ \
     --device gpu \
     --n_sample 1 \
     --n_opt_iter 1000 \
