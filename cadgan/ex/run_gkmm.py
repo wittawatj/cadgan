@@ -12,6 +12,7 @@ import datetime
 import glob
 import os
 import pprint
+import requests
 
 # Just don't use imageio. Use skimage.
 # import imageio
@@ -244,9 +245,8 @@ def main():
         generator = build_generator(config)
 
         # Put models on gpu if needed
-        with torch.enable_grad():  # use_cuda??????
-            generator = generator.to(device)
-
+        #with torch.enable_grad():  # use_cuda??????
+        generator = generator.to(device)
         # for celebA HQ generator,
         # if args.g_type == 'celebAHQ.yaml':
         #    generator.add_resize(args.img_size)
@@ -271,8 +271,18 @@ def main():
         full_g_path = glo.share_path(args.g_path)
         if not os.path.exists(full_g_path):
             #download lars pre-trained model file if not existed
+            print("Generator file does not exist: {}\nLoading pretrain model...".format(full_g_path))
             
-            raise ValueError("Generator file does not exist: {}".format(full_g_path))
+            dict_url = {
+                'lsun_bedroom.yaml':'https://s3.eu-central-1.amazonaws.com/avg-projects/gan_stability/models/lsun_bedroom-df4e7dd2.pt'
+            }
+            
+            assert args.g_type in dict_url.keys(), 'g_type of {} not support'.format(args.g_type)
+            url = dict_url[args.g_type]
+            r = requests.get(url)
+            os.makedirs(os.path.dirname(full_g_path), exist_ok=True)
+            with open(full_g_path, 'wb') as f:
+                f.write(r.content)
         it = checkpoint_io.load(full_g_path)
 
     elif args.g_type == "mnist_dcgan":

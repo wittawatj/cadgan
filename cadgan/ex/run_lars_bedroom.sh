@@ -16,7 +16,7 @@ python3 run_gkmm.py \
     --lr 5e-2 \
     --seed 9 \
     --img_log_steps 1000 \
-    --cond_path  list_of_input_image_path.txt\
+    --cond_path  lsun_bedroom/ \
     --kernel imq \
     --kparams -0.5 1e+2 \
     --img_size 224
