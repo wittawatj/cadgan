@@ -16,7 +16,7 @@ python3 run_gkmm.py \
     --lr 1e-3 \
     --seed 42 \
     --img_log_steps 10000 \
-    --cond_path test_image.jpg \
+    --cond_path colormnist/ \
     --kernel imq \
     --kparams -0.5 1e+1 \
     --img_size 28
