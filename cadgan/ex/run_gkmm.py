@@ -447,26 +447,28 @@ def main():
             except NameError:
                 cond_imgs = cond_img.clone()
         return cond_imgs
-
-    if not os.path.isdir(glo.share_path(args.cond_path)):  #
+    
+    if not os.path.isdir(glo.data_file(args.cond_path)):  #
         # read list of imgs if it's a text file
         if args.cond_path.endswith(".txt"):
-            img_txt_path = glo.share_path(args.cond_path)
+            img_txt_path = glo.data_file(args.cond_path)
             with open(img_txt_path, "r") as f:
                 data = f.readlines()
 
-            list_imgs = [glo.share_path(x.strip()) for x in data if len(x.strip()) != 0]
+            list_imgs = [glo.data_file(x.strip()) for x in data if len(x.strip()) != 0]
             if not list_imgs:
                 raise ValueError("Empty list of images to condiiton. Make sure that {} is valid".format(img_txt_path))
 
             cond_imgs = load_multiple_images(list_imgs)
-        else:
-            path_img = glo.share_path(args.cond_path)
+        elif args.cond_path.endswith(".png") or args.cond_path.endswith(".jpg"):
+            path_img = glo.data_file(args.cond_path)
             loaded = imutil.load_resize_image(path_img, extractor_in_size).copy()
             cond_imgs = img_transform(loaded).unsqueeze(0).type(tensor_type)  # .to(device)
+        else:
+            raise 'Not support input type at {} (currently support folder or text file with list of images)'.format(glo.data_file(args.cond_path))
     else:
         # using all images in the folder
-        list_imgs = glob.glob(glo.share_path(args.cond_path) + "*")
+        list_imgs = glob.glob(glo.data_file(args.cond_path) + "*")
         cond_imgs = load_multiple_images(list_imgs)
 
     cond_imgs = cond_imgs.to(device).type(tensor_type)
