@@ -61,9 +61,10 @@ notebook](https://colab.research.google.com/drive/1gH2naGOwxYNz6OGDydc9SPz7AHJlc
 
 ## Dependency, code structure, sharing resource files
 
-You will need to change values in `settings.ini`.  See
-https://github.com/wittawatj/cadgan/wiki . We currently share large files
-(e.g., model files) via Google Drive.
+You will need to change values in `settings.ini` to your local path. This is important since we will be using relative path in the script. 
+* Results will be saved in `expr_results_path`
+* `data_path` should point to where you store all your input data
+* `problem_model_path` will be used for storing various pre-trained models (warning: this can be quite large)
 
 We provide an example script to run CADGAN in `ex/run_gkmm.py`
 
@@ -71,28 +72,32 @@ For example, here is the command to run CADGAN for celebAHQ dataset on lars pre-
 
     python3 run_gkmm.py \
         --extractor_type vgg_face \
-        --extractor_layers 8 17 26 35 \
+        --extractor_layers 35 \
         --texture 0\
         --depth_process no \
-        --g_path gan_data/celebAHQ_00/chkpts/model.pt \
+        --g_path celebAHQ_00/chkpts/model.pt \
         --g_type celebAHQ.yaml \
         --g_min -1.0 \
         --g_max 1.0 \
-        --logdir log_celeba_vggface/ \
+        --logdir log_celeba_face/ \
         --device gpu \
         --n_sample 1 \
-        --n_opt_iter 3000 \
-        --lr 1e-2 \
-        --seed 9 \
-        --img_log_steps 10 \
-        --cond_path  input.txt\
+        --n_opt_iter 1000 \
+        --lr 5e-2 \
+        --seed 99 \
+        --img_log_steps 500 \
+        --cond_path  celebaHQ/ \
         --kernel imq \
         --kparams -0.5 1e+2 \
-        --w_intp 0
+        --img_size 224
 
-See run_lars_bedroom.sh, run_lars_bridge.sh, run_mnist.sh, run_CUB.sh for other model options.
+* The above command will use all images in `[data_path]/celebaHQ/` as conditional images, with the generator from `[problem_model_path]/celebAHQ_00/chkpts/model.pt` and then store results in `[expr_results_path]/log_celeba_face/`. 
 
-* In case you want to experiment with the parameters, we use `ex/cmd_gkmm.py` to generate commands for multiple combinations of parameters. This requires `cmdprod` package available here: https://github.com/wittawatj/cmdprod
+* Note that possible value of `g_type` are `lsun_bedroom.yaml` `lsun_bridge.yaml` `celebAHQ.yaml` `lsun_tower.yaml` `mnist_dcgan` `colormnist_dcgan`. If the generator doesn't exist for any of these type, the code will download the pre-trained model used in the paper into the specified location.
+
+See run_lars_bedroom.sh, run_lars_bridge.sh, run_lars_tower.sh, run_mnist.sh and run_mnist_color.sh for other model options.
+
+In case you want to experiment with the parameters, we use `ex/cmd_gkmm.py` to generate commands for multiple combinations of parameters. This requires `cmdprod` package available here: https://github.com/wittawatj/cmdprod
 
 ## Contact
 If you have questions or comments, please contact [Wittawat](http://wittawat.com/) and [Patsorn](https://www.cc.gatech.edu/~psangklo/)
