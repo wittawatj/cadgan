@@ -65,6 +65,7 @@ You will need to change values in `settings.ini` to your local path. This is imp
 * Results will be saved in `expr_results_path`
 * `data_path` should point to where you store all your input data
 * `problem_model_path` will be used for storing various pre-trained models (warning: this can be quite large)
+* see comment in settings.ini for more details
 
 We provide an example script to run CADGAN in `ex/run_gkmm.py`
 
@@ -96,6 +97,8 @@ For example, here is the command to run CADGAN for celebAHQ dataset on lars pre-
 * Note that possible value of `g_type` are `lsun_bedroom.yaml` `lsun_bridge.yaml` `celebAHQ.yaml` `lsun_tower.yaml` `mnist_dcgan` `colormnist_dcgan`. If the generator doesn't exist for any of these type, the code will download the pre-trained model used in the paper into the specified location.
 
 See run_lars_bedroom.sh, run_lars_bridge.sh, run_lars_tower.sh, run_mnist.sh and run_mnist_color.sh for other model options.
+
+We also provide 2 example images for each of the dataset in `data/` that can be used for testing.
 
 In case you want to experiment with the parameters, we use `ex/cmd_gkmm.py` to generate commands for multiple combinations of parameters. This requires `cmdprod` package available here: https://github.com/wittawatj/cmdprod
 
