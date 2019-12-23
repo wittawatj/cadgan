@@ -107,6 +107,6 @@ If you have questions or comments, please contact [Wittawat](http://wittawat.com
     - [ ] run_lars_bedroom.sh
     - [ ] run_CUB.sh
     - [ ] run_lars_celeba.sh
-    - [ ] run_mnist_color.sh
+    - [x] run_mnist_color.sh
 - [ ] upload and share data/model files
-  - [ ] script to download and extract all lars models
+- [ ] support multiple images as arguments

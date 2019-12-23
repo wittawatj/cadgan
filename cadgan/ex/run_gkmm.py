@@ -304,12 +304,13 @@ def main():
         Z0 = f_noise(n_sample)
 
         full_g_path = glo.share_path(args.g_path)
-        if not os.path.exists(full_g_path):
-            raise ValueError("Generator file does not exist: {}".format(full_g_path))
-        # load option depends on whether GPU is used
-        load_options = {} if use_cuda else {"map_location": lambda storage, loc: storage}
-        generator = cmnist_dcgan.Generator()  # .load(full_g_path, **load_options)
-        generator.load_state_dict(torch.load(full_g_path, **load_options), strict=False)
+        generator = cmnist_dcgan.Generator()
+        if os.path.exists(full_g_path):
+            generator.load(full_g_path)
+        else:
+            print("Generator file does not exist: {}\nLoading pretrain model...".format(full_g_path))
+            generator.download_pretrain(output=full_g_path)  # .load(full_g_path, **load_options)
+         
         generator = generator.to(device)
 
         generator_test = generator

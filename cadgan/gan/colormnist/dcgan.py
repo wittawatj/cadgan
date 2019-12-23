@@ -11,6 +11,8 @@ import torch.utils.data
 import torchvision.datasets as dset
 import torchvision.transforms as transforms
 import torchvision.utils as vutils
+import cadgan.glo as glo
+from google_drive_downloader import GoogleDriveDownloader as gdd
 
 class Generator(nn.Module):
     def __init__(self, bs=64):
@@ -35,3 +37,30 @@ class Generator(nn.Module):
         out = self.relu(self.bn3(self.deconv3(out)))
         out = self.sigmoid(self.deconv4(out))
         return out
+
+    def save(self, f):
+        """
+        Save the state of this model to a file f.
+        """
+        torch.save(self.state_dict(), f)
+
+    def load(self, f, **opt):
+        """
+        Load a Generator from a file. To be used with save().
+        """
+        import collections
+        loaded = torch.load(f, **opt)
+        if type(loaded) == collections.OrderedDict:
+            return self.load_state_dict(loaded, strict=False)
+        return self.load_state_dict(loaded.state_dict(), strict=False)
+
+    def download_pretrain(self, output_path='',**opt):
+        if output_path == '':
+            output_path = glo.prob_model_folder('dcgan_colormnist/colormnist/netG_epoch_{}.pth'.format(24))
+        if not os.path.exists(output_path):
+            gdd.download_file_from_google_drive(file_id='149uouxlGyhAOPKrGTVNzxXV0p7IjKqX-',dest_path=output_path)
+            
+        use_cuda = torch.cuda.is_available()
+        load_options = {} if use_cuda else {'map_location': lambda storage, loc: storage} 
+        self.load(output_path,**load_options)
+# ---------
