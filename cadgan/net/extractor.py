@@ -18,6 +18,7 @@ from torch import nn
 from torch.autograd import Variable
 from torch.nn import functional as F
 from cadgan.gan.mnist.classify import MnistClassifier
+from google_drive_downloader import GoogleDriveDownloader as gdd
 
 class MnistCNN(nn.Module):
     def __init__(self, device="cpu", layer_postprocess=None, layer=1):
@@ -289,7 +290,10 @@ class VGG19_face(nn.Module):
         self.classifier_5 = nn.Dropout(p=0.5)
         self.classifier_6 = nn.Linear(in_features=4096, out_features=1000, bias=True)
 
-        weights_path = glo.share_path("extractor_models/face/vgg19_pt_mcn.pth")
+        weights_path = glo.prob_model_folder("extractor_models/face/vgg19_pt_mcn.pth")
+        
+        if not os.path.exists(weights_path):
+            gdd.download_file_from_google_drive(file_id='1pHV62ptWAB3n7fCky_uQunn5Op3A3o9I',dest_path=weights_path)
 
         state_dict = torch.load(weights_path)
         self.load_state_dict(state_dict)

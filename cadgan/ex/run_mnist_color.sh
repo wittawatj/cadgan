@@ -14,7 +14,7 @@ python3 run_gkmm.py \
     --n_sample 1 \
     --n_opt_iter 1000 \
     --lr 1e-3 \
-    --seed 42 \
+    --seed 99 \
     --img_log_steps 10000 \
     --cond_path colormnist/ \
     --kernel imq \

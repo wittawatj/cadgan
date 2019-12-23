@@ -101,12 +101,11 @@ If you have questions or comments, please contact [Wittawat](http://wittawat.com
 - [x] support running cadgan on celebaHQ
 - [x] support running cadgan on LSUN
 - [x] clean up code & readme
-- [ ] test that all script can successfully run
+- [x] test that all script can successfully run
     - [x] run_mnist.sh
-    - [ ] run_lars_bridge.sh
-    - [ ] run_lars_bedroom.sh
-    - [ ] run_CUB.sh
-    - [ ] run_lars_celeba.sh
+    - [x] run_lars_bridge.sh
+    - [x] run_lars_bedroom.sh
+    - [x] run_lars_tower.sh
+    - [x] run_lars_celeba.sh
     - [x] run_mnist_color.sh
-- [ ] upload and share data/model files
-- [ ] support multiple images as arguments
+- [x] upload and share data/model files

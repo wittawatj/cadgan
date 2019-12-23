@@ -268,13 +268,16 @@ def main():
         # Loading Generator
         ydist = get_ydist(nlabels, device=device)
 
-        full_g_path = glo.share_path(args.g_path)
+        full_g_path = glo.prob_model_folder(args.g_path)
         if not os.path.exists(full_g_path):
             #download lars pre-trained model file if not existed
-            print("Generator file does not exist: {}\nLoading pretrain model...".format(full_g_path))
+            print("Generator file does not exist: {}\nLoading pretrain model...".format(full_g_path),end='')
             
             dict_url = {
-                'lsun_bedroom.yaml':'https://s3.eu-central-1.amazonaws.com/avg-projects/gan_stability/models/lsun_bedroom-df4e7dd2.pt'
+                'lsun_bedroom.yaml':'https://s3.eu-central-1.amazonaws.com/avg-projects/gan_stability/models/lsun_bedroom-df4e7dd2.pt',
+                'lsun_bridge.yaml':'https://s3.eu-central-1.amazonaws.com/avg-projects/gan_stability/models/lsun_bridge-82887d22.pt',
+                'celebAHQ.yaml':'https://s3.eu-central-1.amazonaws.com/avg-projects/gan_stability/models/celebahq-baab46b2.pt',
+                'lsun_tower.yaml':'https://s3.eu-central-1.amazonaws.com/avg-projects/gan_stability/models/lsun_tower-1af5e570.pt'
             }
             
             assert args.g_type in dict_url.keys(), 'g_type of {} not support'.format(args.g_type)
@@ -283,7 +286,10 @@ def main():
             os.makedirs(os.path.dirname(full_g_path), exist_ok=True)
             with open(full_g_path, 'wb') as f:
                 f.write(r.content)
-        it = checkpoint_io.load(full_g_path)
+                
+            print('done')
+        load_options = {} if use_cuda else {"map_location": lambda storage, loc: storage}        
+        it = checkpoint_io.load(full_g_path,**load_options)
 
     elif args.g_type == "mnist_dcgan":
         # TODO should probablu reorganize these
@@ -291,7 +297,7 @@ def main():
         f_noise = lambda n: torch.randn(n, latent_dim).float()
         Z0 = f_noise(n_sample)
 
-        full_g_path = glo.share_path(args.g_path)
+        full_g_path = glo.prob_model_folder(args.g_path)
         # load option depends on whether GPU is used
         load_options = {} if use_cuda else {"map_location": lambda storage, loc: storage}
 
@@ -313,7 +319,7 @@ def main():
         f_noise = lambda n: torch.randn(n, latent_dim).float()
         Z0 = f_noise(n_sample)
 
-        full_g_path = glo.share_path(args.g_path)
+        full_g_path = glo.prob_model_folder(args.g_path)
         generator = cmnist_dcgan.Generator()
         if os.path.exists(full_g_path):
             generator.load(full_g_path)
