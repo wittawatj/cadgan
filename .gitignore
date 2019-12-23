@@ -2,7 +2,7 @@ code_icml2019/
 #settings.ini
 .idea/
 *.swp
-data/
+#data/
 .DS_Store
 prob_model/
 
