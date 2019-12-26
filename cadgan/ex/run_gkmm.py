@@ -271,7 +271,7 @@ def main():
         full_g_path = glo.prob_model_folder(args.g_path)
         if not os.path.exists(full_g_path):
             #download lars pre-trained model file if not existed
-            print("Generator file does not exist: {}\nLoading pretrain model...".format(full_g_path),end='')
+            print("Generator file does not exist: {}\n I will load a pretrained model for you. Please wait ...".format(full_g_path),end='')
             
             dict_url = {
                 'lsun_bedroom.yaml':'https://s3.eu-central-1.amazonaws.com/avg-projects/gan_stability/models/lsun_bedroom-df4e7dd2.pt',
@@ -600,6 +600,7 @@ def main():
     Z = multi_restarts_refiner(Z0)
 
     # Try to plot (in Tensorboard) extracted features as images if possible
+    log.l().info('Attemping to plot extracted features as images. Will skip if this does not work')
     try:
         # if args.extractor_type == 'hed':
         feat_out = extractor.forward(cond_imgs)
@@ -611,7 +612,8 @@ def main():
         arranged_init_imgs = torchvision.utils.make_grid(gens_cpu, nrow=2, normalize=True)
         sum_writer.add_image("Init_feature", arranged_init_imgs)
         del feat_out
-    except:
+    except Exception as err:
+        log.l().info(err)
         log.l().info("unable to plot feature as image")
     # if args.w_intp
     # import pdb; pdb.set_trace()

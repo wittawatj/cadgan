@@ -71,7 +71,7 @@ class Generator(nn.Module):
         if output_path == '':
             output_path = glo.prob_model_folder('mnist_dcgan/mnist_dcgan_ep{}_bs{}.pt'.format(40,64))
         if not os.path.exists(output_path):
-            gdd.download_file_from_google_drive(file_id='1M0OeHShjpWyf99zmHHVVdBEA7u9GAFZ1',dest_path=output_path)
+            gdd.download_file_from_google_drive(file_id='1KOi9b8JSBXc7hx9P8Azbtkhd7fZOeZxc',dest_path=output_path)
             
         use_cuda = torch.cuda.is_available()
         load_options = {} if use_cuda else {'map_location': lambda storage, loc: storage} 

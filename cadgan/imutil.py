@@ -7,6 +7,8 @@ import cadgan.util as util
 import numpy as np
 import scipy.misc
 import skimage
+import skimage.io
+import skimage.transform
 import skimage.util
 import imageio
 
