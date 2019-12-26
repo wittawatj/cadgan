@@ -1,4 +1,4 @@
-# Content Addressable GAN (CADGAN)
+# Content ADdressable GAN (CADGAN)
 
 Repository containing resources from our paper:
 
@@ -41,11 +41,10 @@ notebook](https://colab.research.google.com/drive/1gH2naGOwxYNz6OGDydc9SPz7AHJlc
 
 ## Code
 
-* Support python 3.6+
+* Support Python 3.6+
 
-* `cadgan` is intended to be a Python module i.e., it can be imported in
-  Python code. Reusable code should be put in this folder. Make subfolders
-  (packages) as appropriate.
+* Automatic dependency resolution only works with a new version of pip.
+      First upgrade you pip with `pip install --upgrade pip`.
 
 * This repo is set up so that once you clone, you can do
 
@@ -54,18 +53,16 @@ notebook](https://colab.research.google.com/drive/1gH2naGOwxYNz6OGDydc9SPz7AHJlc
   to install as a Python package. In Python, we can then do `import cadgan as
   cdg`, and all the code in `cadgan` folder is accessible through `cdg`.
 
-  * Automatic dependency resolution only works with a new version of pip.
-      First upgrade you pip with `pip install --upgrade pip`.
-
-* `ipynb` folder is for Jupyter notebook files.
 
 ## Dependency, code structure, sharing resource files
 
-You will need to change values in `settings.ini` to your local path. This is important since we will be using relative path in the script. 
+You will need to change values in `settings.ini` to your local path. This is
+important since we will be using relative path in the script. 
+
 * Results will be saved in `expr_results_path`
 * `data_path` should point to where you store all your input data
 * `problem_model_path` will be used for storing various pre-trained models (warning: this can be quite large)
-* see comment in settings.ini for more details
+* See comment in settings.ini for more details
 
 We provide an example script to run CADGAN in `ex/run_gkmm.py`
 
