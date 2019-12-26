@@ -43,7 +43,7 @@ notebook](https://colab.research.google.com/drive/1gH2naGOwxYNz6OGDydc9SPz7AHJlc
 
 * Support Python 3.6+. 
 
-* Require Pytorch 0.4.1. Require a GPU.
+* Require Pytorch 0.4.1. Require a GPU with ideally no less than 4GB of memory.
 
 * Automatic dependency resolution only works with a new version of pip.
       First upgrade you pip with `pip install --upgrade pip`.
@@ -101,7 +101,9 @@ For example, here is the command to run CADGAN for celebAHQ dataset on Mescheder
         --kparams -0.5 1e+2 \
         --img_size 224
 
-* The above command will use all images in `[data_path]/celebaHQ/` as conditional images, with the generator from `[problem_model_path]/celebAHQ_00/chkpts/model.pt` and then store results in `[expr_results_path]/log_celeba_face/`. When this is run for the first time, the GAN model will be downloaded automatically. The required feature extractor (VGG face, in this case) will also be downloaded automatically. Downloading these models may take some time. The size of each model is roughly 300-600 MB.
+* The above command will use all images in `[data_path]/celebaHQ/` as conditional images, with the generator from `[problem_model_path]/celebAHQ_00/chkpts/model.pt` and then store results in `[expr_results_path]/log_celeba_face/`. When this is run for the first time, the GAN model will be downloaded automatically. The required feature extractor (VGG face, in this case) will also be downloaded automatically. Downloading these models may take some time. The size of each model is roughly 300-600 MB. The results are written to a Tensorboard log folder. Simply use Tensorboard to see the result. This can be done by, for instance, 
+
+        ./cadgan/ex/start_tensorboard.sh [expr_results_path]/log_celeba_face/
 
 * Note that possible value of `g_type` are `lsun_bedroom.yaml` `lsun_bridge.yaml` `celebAHQ.yaml` `lsun_tower.yaml` `mnist_dcgan` `colormnist_dcgan`. If the specified generator doesn't exist yet, the code will download the pre-trained model used in the paper into the specified location.
 
