@@ -28,7 +28,7 @@ setup(
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
     version="0.1.0",
-    description="Conditional image generation with kernel Bayes' rule",
+    description="Conditional image generation with kernel mean matching",
     long_description=long_description,
     # The project's main homepage.
     url="https://github.com/wittawatj/cadgan",
@@ -61,7 +61,7 @@ setup(
     # simple. Or you can use find_packages().
     packages=find_packages(exclude=["data", "*.ex"]),
     # See https://www.python.org/dev/peps/pep-0440/#version-specifiers
-    python_requires="~= 3.5",
+    python_requires="~= 3.6",
     # List run-time dependencies here.  These will be installed by pip when
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
@@ -81,6 +81,7 @@ setup(
         "pyyaml",
         "tensorboardX",
         "googledrivedownloader",
-        "hed @ git+https://github.com/janesjanes/hed.git#egg=hed-0.1.0"
+        "hed @ git+https://github.com/janesjanes/hed.git#egg=hed-0.1.0",
+        "tensorboard"
         ],
 )

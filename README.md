@@ -41,12 +41,24 @@ notebook](https://colab.research.google.com/drive/1gH2naGOwxYNz6OGDydc9SPz7AHJlc
 
 ## Code
 
-* Support Python 3.6+
+* Support Python 3.6+. 
+
+* Require Pytorch 0.4.1. Require a GPU.
 
 * Automatic dependency resolution only works with a new version of pip.
       First upgrade you pip with `pip install --upgrade pip`.
 
-* This repo is set up so that once you clone, you can do
+* If you use Anaconda, consider creating a new environment before installing `cadgan`. 
+
+        conda create -n cadgan pytorch=0.4.1
+
+  where cadgan in the above command is an arbitrary name for the environment.
+
+* Activate the environment with `conda activate cadgan`. You might want to
+  install Jupyter notebook with `conda install jupyter`.
+
+* Make you you activate the environment first. Then, install the `cadgan`
+  package. This repo is set up so that once you clone, you can do
 
         pip install -e /path/to/the/folder/of/this/repo/
 
@@ -66,7 +78,7 @@ important since we will be using relative path in the script.
 
 We provide an example script to run CADGAN in `ex/run_gkmm.py`
 
-For example, here is the command to run CADGAN for celebAHQ dataset on lars pre-trained model:
+For example, here is the command to run CADGAN for celebAHQ dataset on Mescheder et al., 2018's pre-trained model:
 
     python3 run_gkmm.py \
         --extractor_type vgg_face \
@@ -89,18 +101,22 @@ For example, here is the command to run CADGAN for celebAHQ dataset on lars pre-
         --kparams -0.5 1e+2 \
         --img_size 224
 
-* The above command will use all images in `[data_path]/celebaHQ/` as conditional images, with the generator from `[problem_model_path]/celebAHQ_00/chkpts/model.pt` and then store results in `[expr_results_path]/log_celeba_face/`. 
+* The above command will use all images in `[data_path]/celebaHQ/` as conditional images, with the generator from `[problem_model_path]/celebAHQ_00/chkpts/model.pt` and then store results in `[expr_results_path]/log_celeba_face/`. When this is run for the first time, the GAN model will be downloaded automatically. The required feature extractor (VGG face, in this case) will also be downloaded automatically. Downloading these models may take some time. The size of each model is roughly 300-600 MB.
 
-* Note that possible value of `g_type` are `lsun_bedroom.yaml` `lsun_bridge.yaml` `celebAHQ.yaml` `lsun_tower.yaml` `mnist_dcgan` `colormnist_dcgan`. If the generator doesn't exist for any of these type, the code will download the pre-trained model used in the paper into the specified location.
+* Note that possible value of `g_type` are `lsun_bedroom.yaml` `lsun_bridge.yaml` `celebAHQ.yaml` `lsun_tower.yaml` `mnist_dcgan` `colormnist_dcgan`. If the specified generator doesn't exist yet, the code will download the pre-trained model used in the paper into the specified location.
 
-See run_lars_bedroom.sh, run_lars_bridge.sh, run_lars_tower.sh, run_mnist.sh and run_mnist_color.sh for other model options.
+See `run_lars_bedroom.sh`, `run_lars_bridge.sh`, `run_lars_tower.sh`, `run_mnist.sh` and `run_mnist_color.sh` for other model options.
 
-We also provide 2 example images for each of the dataset in `data/` that can be used for testing.
+We also provide 2 example images for each of the dataset in `data/` that can be
+used for testing.
 
-In case you want to experiment with the parameters, we use `ex/cmd_gkmm.py` to generate commands for multiple combinations of parameters. This requires `cmdprod` package available here: https://github.com/wittawatj/cmdprod
+In case you want to experiment with the parameters, we use `ex/cmd_gkmm.py` to
+generate commands for multiple combinations of parameters. This requires
+`cmdprod` package available here: https://github.com/wittawatj/cmdprod .
 
 ## Contact
-If you have questions or comments, please contact [Wittawat](http://wittawat.com/) and [Patsorn](https://www.cc.gatech.edu/~psangklo/)
+
+If you have questions or comments, please contact [Wittawat](http://wittawat.com/) and [Patsorn](https://www.cc.gatech.edu/~psangklo/).
 
 ## TODO list
 - [x] support running cadgan on celebaHQ

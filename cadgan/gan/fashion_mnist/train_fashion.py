@@ -3,7 +3,6 @@
 import os
 
 import cadgan
-import cadgan.embed as embed
 import cadgan.fashion_mnist.dcgan as fashion_dcgan
 import cadgan.kernel as kernel
 import cadgan.main as main

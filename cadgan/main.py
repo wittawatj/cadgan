@@ -22,7 +22,6 @@ from torch.nn import functional as F
 # import cadgan
 # import cadgan.glo as glo
 # import cadgan.plot as plot
-# import cadgan.embed as embed
 # import cadgan.util as util
 
 
@@ -442,6 +441,7 @@ def pt_gkmm(
 
     gens_cpu = tmp_sam.to(torch.device("cpu"))
     arranged_init_imgs = torchvision.utils.make_grid(gens_cpu, nrow=2, normalize=True)
+    log.l().debug('Adding initial generated images to Tensorboard')
     sum_writer.add_image("Init_Images", arranged_init_imgs)
 
     del tmp_sam
@@ -488,6 +488,7 @@ def pt_gkmm(
                 gens_cpu = gens.to(torch.device("cpu"))
                 imutil.save_images(gens_cpu, os.path.join(log_img_dir, "output_images", str(t)))
                 arranged_gens = torchvision.utils.make_grid(gens_cpu, nrow=2, normalize=True)
+                log.l().debug('Logging generated images at iteration {}'.format(t+1))
                 sum_writer.add_image("Generated_Images", arranged_gens, t)
 
             F_gz = extractor.forward(gens)
@@ -503,9 +504,10 @@ def pt_gkmm(
                     sum_writer.add_image("feature_images", arranged_init_imgs, t)
                 except:
                     if t == 0:
-                        log.l().info("unable to plot feature as image")
+                        log.l().debug("Unable to plot features as image. Okay. Will skip plotting features.")
 
             if weigh_logits:
+                # WJ: This option is not really used. Should be removed.
                 F_gz = weighing_logits(F_gz)
             KF_gz = k.eval(F_gz, F_gz)
 
