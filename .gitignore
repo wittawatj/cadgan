@@ -5,7 +5,8 @@ code_icml2019/
 *.swp
 #data/
 .DS_Store
-prob_model/
+prob_models/
+results/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
