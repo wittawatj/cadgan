@@ -1,4 +1,4 @@
-# Content Addressable GAN (CADGAN)
+# Content ADdressable GAN (CADGAN)
 
 Repository containing resources from our paper:
 
@@ -34,13 +34,101 @@ We consider a GAN model from [Mescheder et al., 2018](https://arxiv.org/abs/1801
 
 <!--<img src="https://github.com/wittawatj/cadgan/blob/master/illus/m3_triangle_interpolation_v5.png" width="70%">-->
 
-## Code 
+## Demo
 
-Full code in Python (with Pytorch) is coming soon! For now, please check this
-[Colab
-notebook](https://colab.research.google.com/drive/1gH2naGOwxYNz6OGDydc9SPz7AHJlc5u7)
-for a simple example on MNIST. No local installation is required.
+For a simple demo example on MNIST, check out this [Colab
+notebook](https://colab.research.google.com/drive/1gH2naGOwxYNz6OGDydc9SPz7AHJlc5u7). No local installation is required.
 
+## Code
+
+* Support Python 3.6+. 
+
+* Require Pytorch 0.4.1. Require a GPU with ideally no less than 4GB of memory.
+
+* Automatic dependency resolution only works with a new version of pip.
+      First upgrade you pip with `pip install --upgrade pip`.
+
+* If you use Anaconda, consider creating a new environment before installing `cadgan`. 
+
+        conda create -n cadgan pytorch=0.4.1
+
+  where cadgan in the above command is an arbitrary name for the environment.
+
+* Activate the environment with `conda activate cadgan`. You might want to
+  install Jupyter notebook with `conda install jupyter`.
+
+* Make you you activate the environment first. Then, install the `cadgan`
+  package. This repo is set up so that once you clone, you can do
+
+        pip install -e /path/to/the/folder/of/this/repo/
+
+  to install as a Python package. In Python, we can then do `import cadgan as
+  cdg`, and all the code in `cadgan` folder is accessible through `cdg`.
+
+
+## Dependency, code structure, sharing resource files
+
+You will need to change values in `settings.ini` to your local path. This is
+important since we will be using relative path in the script. 
+
+* Results will be saved in `expr_results_path`
+* `data_path` should point to where you store all your input data
+* `problem_model_path` will be used for storing various pre-trained models (warning: this can be quite large)
+* See comment in settings.ini for more details
+
+We provide an example script to run CADGAN in `ex/run_gkmm.py`
+
+For example, here is the command to run CADGAN for celebAHQ dataset on Mescheder et al., 2018's pre-trained model:
+
+    python3 run_gkmm.py \
+        --extractor_type vgg_face \
+        --extractor_layers 35 \
+        --texture 0\
+        --depth_process no \
+        --g_path celebAHQ_00/chkpts/model.pt \
+        --g_type celebAHQ.yaml \
+        --g_min -1.0 \
+        --g_max 1.0 \
+        --logdir log_celeba_face/ \
+        --device gpu \
+        --n_sample 1 \
+        --n_opt_iter 1000 \
+        --lr 5e-2 \
+        --seed 99 \
+        --img_log_steps 500 \
+        --cond_path  celebaHQ/ \
+        --kernel imq \
+        --kparams -0.5 1e+2 \
+        --img_size 224
+
+* The above command will use all images in `[data_path]/celebaHQ/` as conditional images, with the generator from `[problem_model_path]/celebAHQ_00/chkpts/model.pt` and then store results in `[expr_results_path]/log_celeba_face/`. When this is run for the first time, the GAN model will be downloaded automatically. The required feature extractor (VGG face, in this case) will also be downloaded automatically. Downloading these models may take some time. The size of each model is roughly 300-600 MB. The results are written to a Tensorboard log folder. Simply use Tensorboard to see the result. This can be done by, for instance, 
+
+        ./cadgan/ex/start_tensorboard.sh [expr_results_path]/log_celeba_face/
+
+* Note that possible value of `g_type` are `lsun_bedroom.yaml` `lsun_bridge.yaml` `celebAHQ.yaml` `lsun_tower.yaml` `mnist_dcgan` `colormnist_dcgan`. If the specified generator doesn't exist yet, the code will download the pre-trained model used in the paper into the specified location.
+
+See `run_lars_bedroom.sh`, `run_lars_bridge.sh`, `run_lars_tower.sh`, `run_mnist.sh` and `run_mnist_color.sh` for other model options.
+
+We also provide 2 example images for each of the dataset in `data/` that can be
+used for testing.
+
+In case you want to experiment with the parameters, we use `ex/cmd_gkmm.py` to
+generate commands for multiple combinations of parameters. This requires
+`cmdprod` package available here: https://github.com/wittawatj/cmdprod .
 
 ## Contact
-If you have questions or comments, please contact [Wittawat](http://wittawat.com/) and [Patsorn](https://www.cc.gatech.edu/~psangklo/)
+
+If you have questions or comments, please contact [Wittawat](http://wittawat.com/) and [Patsorn](https://www.cc.gatech.edu/~psangklo/).
+
+## TODO list
+- [x] support running cadgan on celebaHQ
+- [x] support running cadgan on LSUN
+- [x] clean up code & readme
+- [x] test that all script can successfully run
+    - [x] run_mnist.sh
+    - [x] run_lars_bridge.sh
+    - [x] run_lars_bedroom.sh
+    - [x] run_lars_tower.sh
+    - [x] run_lars_celeba.sh
+    - [x] run_mnist_color.sh
+- [x] upload and share data/model files

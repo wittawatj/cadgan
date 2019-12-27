@@ -1,4 +1,13 @@
+settings.ini
+code_icml2019/
+#settings.ini
+.idea/
 *.swp
+#data/
+.DS_Store
+prob_models/
+results/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
