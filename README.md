@@ -28,7 +28,7 @@ time*, a content-addressable generative model from a trained marginal model.
 
 ## Examples
 
-We consider a GAN model from [Mescheder et al., 2018](https://arxiv.org/abs/1801.04406https://arxiv.org/abs/1801.04406) pretrained on CelebA-HQ. We run our proposed procedure using the three images (with border) at the corners as the input. All images in the triangle are the output from our procedure. Each of the output images is positioned such that the closeness to a corner (an input image) indicates the importance (weight) of the corresponding input image.
+We consider a GAN model from [Mescheder et al., 2018](https://arxiv.org/abs/1801.04406) pretrained on CelebA-HQ. We run our proposed procedure using the three images (with border) at the corners as the input. All images in the triangle are the output from our procedure. Each of the output images is positioned such that the closeness to a corner (an input image) indicates the importance (weight) of the corresponding input image.
 
 <img src="https://github.com/wittawatj/cadgan/blob/master/illus/m3_triangle_interpolation_v2.png" width="70%">
 
